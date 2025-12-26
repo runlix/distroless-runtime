@@ -1,0 +1,12 @@
+{
+  "links": [
+    {
+      "name": "Distroless Base",
+      "url": "https://github.com/GoogleContainerTools/distroless"
+    },
+    {
+      "name": "Debian",
+      "url": "https://www.debian.org/"
+    }
+  ]
+}
