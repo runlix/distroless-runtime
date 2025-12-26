@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
  && rm -rf /var/lib/apt/lists/*
 
 # STAGE 2 — distroless final image
-FROM gcr.io/distroless/base-debian12
+FROM gcr.io/distroless/base-debian12:debug-amd64
 
 # Copy runtime dependencies
 # Copy dynamic linker (required for dynamically linked binaries)
