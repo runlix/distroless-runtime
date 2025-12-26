@@ -1,0 +1,16 @@
+name: call-build
+
+on:
+  workflow_dispatch:
+  push:
+    branches-ignore:
+      - 'master'
+
+jobs:
+  call:
+    uses: runlix/build-workflow/.github/workflows/build-on-call.yml@master
+    with:
+      image_name: media-distroless-runtime
+      dockerfile_path: Dockerfile
+      build_context: .
+    secrets: inherit
