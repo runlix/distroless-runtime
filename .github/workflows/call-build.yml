@@ -4,11 +4,11 @@ on:
   workflow_dispatch:
   push:
     branches-ignore:
-      - 'master'
+      - 'main'
 
 jobs:
   call:
-    uses: runlix/build-workflow/.github/workflows/build-on-call.yml@master
+    uses: runlix/build-workflow/.github/workflows/build-on-call.yml@main
     with:
       image_name: media-distroless-runtime
       dockerfile_path: Dockerfile
