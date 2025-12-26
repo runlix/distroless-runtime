@@ -1,0 +1,22 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "baseBranches": ["release"],
+
+  "packageRules": [
+    // Distroless base images
+    {
+      "matchManagers": ["dockerfile"],
+      "matchPackageNames": ["gcr.io/distroless/base-debian12"],
+      "groupName": "Distroless Base Image",
+      "allowedTags": ["latest", "nonroot"] 
+    },
+
+    // Debian slim base image
+    {
+      "matchManagers": ["dockerfile"],
+      "matchPackageNames": ["debian:bookworm-slim"],
+      "groupName": "Debian Slim Base Image"
+    }
+  ]
+}
