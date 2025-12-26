@@ -13,8 +13,9 @@ FROM gcr.io/distroless/base-debian12:debug-amd64
 
 # Copy runtime dependencies
 # Copy dynamic linker (required for dynamically linked binaries)
-COPY --from=runtime-deps /lib/x86_64-linux-gnu/ld-linux-x86-64.so.2 /lib/x86_64-linux-gnu/
-# Copy shared libraries
+# Note: COPY creates parent directories automatically, but we verify the source exists
+COPY --from=runtime-deps /lib/x86_64-linux-gnu/ld-linux-x86-64.so.2 /lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+# Copy shared libraries (libc6, libssl3, etc.)
 COPY --from=runtime-deps /usr/lib/x86_64-linux-gnu /usr/lib/x86_64-linux-gnu
 # Copy SSL certificates
 COPY --from=runtime-deps /etc/ssl/certs /etc/ssl/certs
