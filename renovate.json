@@ -4,17 +4,16 @@
   "baseBranches": ["release"],
 
   "packageRules": [
-    // Distroless base images
+    // Distroless base image
     {
-      "matchManagers": ["dockerfile"],
+      "matchDatasources": ["docker"],
       "matchPackageNames": ["gcr.io/distroless/base-debian12"],
-      "groupName": "Distroless Base Image",
-      "allowedTags": ["latest", "nonroot"] 
+      "groupName": "Distroless Base Image"
     },
 
-    // Debian slim base image
+    // Debian bookworm-slim
     {
-      "matchManagers": ["dockerfile"],
+      "matchDatasources": ["docker"],
       "matchPackageNames": ["debian:bookworm-slim"],
       "groupName": "Debian Slim Base Image"
     }
