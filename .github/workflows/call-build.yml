@@ -8,9 +8,12 @@ on:
 
 jobs:
   call:
+    permissions:
+      contents: write
+      packages: write
     uses: runlix/build-workflow/.github/workflows/build-on-call.yml@main
     with:
-      image_name: media-distroless-runtime
+      image_name: distroless-runtime
       dockerfile_path: Dockerfile
       build_context: .
     secrets: inherit
