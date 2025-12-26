@@ -1,5 +1,5 @@
 # STAGE 1 — build base libs
-FROM debian:bookworm-slim AS runtime-deps
+FROM docker.io/library/debian:bookworm-slim AS runtime-deps
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     # <Add_package_for_base_image> \
