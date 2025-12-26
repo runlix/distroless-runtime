@@ -2,13 +2,13 @@
   "release": {
     "description": "release",
     "hide": false,
-    "last_updated": "2025-12-26T23:03:44.000Z",
-    "last_updated_url": "https://github.com/runlix/distroless-runtime/actions/runs/20530853202",
+    "last_updated": "2025-12-26T23:05:37.000Z",
+    "last_updated_url": "https://github.com/runlix/distroless-runtime/actions/runs/20530878099",
     "latest": true,
     "tags": [
       "release",
       "release-unknown",
-      "release-fab3009"
+      "release-66e90b4"
     ]
   }
 }
