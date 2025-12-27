@@ -1,10 +1,29 @@
 {
-  "VERSION": "1.0.1",
-  "DEBIAN_DIGEST_AMD64": "sha256:placeholder",
-  "DEBIAN_DIGEST_ARM64": "sha256:placeholder",
-  "DISTROLESS_DIGEST_AMD64": "sha256:7aa57dbe6daf724d489941dde747932bfbba936b317b021ec7b8362ed5742987",
-  "DISTROLESS_DIGEST_ARM64": "sha256:e1bd9ae4515d76130ff4266a7e03ed4f18775cc4b5afb77c25acc6296be8d6bc",
-  "DISTROLESS_DEBUG_DIGEST_AMD64": "sha256:8e997defe58872786041e797f99565a56cb81b8a4069a8a876ac28fdc4e67db7",
-  "DISTROLESS_DEBUG_DIGEST_ARM64": "sha256:d7a155c7e05442954ffbcdab1d1c6ea0a92e88eed4638ac927bf7448a0037bb0",
-  "BUILD_DATE": "2025-12-27T09:57:48Z"
+  "version": "1.0.1",
+  "platforms": ["linux/amd64", "linux/arm64"],
+  "base_images": {
+    "debian": {
+      "digests": {
+        "amd64": "sha256:placeholder",
+        "arm64": "sha256:placeholder"
+      }
+    },
+    "distroless": {
+      "variants": {
+        "latest": {
+          "digests": {
+            "amd64": "sha256:7aa57dbe6daf724d489941dde747932bfbba936b317b021ec7b8362ed5742987",
+            "arm64": "sha256:e1bd9ae4515d76130ff4266a7e03ed4f18775cc4b5afb77c25acc6296be8d6bc"
+          }
+        },
+        "debug": {
+          "digests": {
+            "amd64": "sha256:8e997defe58872786041e797f99565a56cb81b8a4069a8a876ac28fdc4e67db7",
+            "arm64": "sha256:d7a155c7e05442954ffbcdab1d1c6ea0a92e88eed4638ac927bf7448a0037bb0"
+          }
+        }
+      }
+    }
+  },
+  "build_date": "2025-12-27T09:57:48Z"
 }
