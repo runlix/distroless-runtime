@@ -6,6 +6,7 @@ Base Docker image.
 
 - libc6 - Standard C library (required for .NET binaries)
 - libssl3 - SSL/TLS library (required for HTTPS operations)
+- libicu72 - International Components for Unicode (required for .NET globalization)
 - ca-certificates - Certificate authority certificates (for HTTPS/TLS support)
 - tzdata - Timezone data
 
