@@ -2,13 +2,13 @@
   "release": {
     "description": "release",
     "hide": false,
-    "last_updated": "2025-12-26T23:20:35.000Z",
-    "last_updated_url": "https://github.com/runlix/distroless-runtime/actions/runs/20531068636",
+    "last_updated": "2025-12-27T00:21:34.000Z",
+    "last_updated_url": "https://github.com/runlix/distroless-runtime/actions/runs/20531731103",
     "latest": true,
     "tags": [
       "release",
       "release-unknown",
-      "release-a911a6d"
+      "release-59c4aeb"
     ]
   }
 }
