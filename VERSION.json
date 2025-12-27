@@ -1,0 +1,11 @@
+{
+  "VERSION": "1.0.0",
+  "DEBIAN_DIGEST_AMD64": "sha256:placeholder",
+  "DEBIAN_DIGEST_ARM64": "sha256:placeholder",
+  "DISTROLESS_DIGEST_AMD64": "sha256:placeholder",
+  "DISTROLESS_DIGEST_ARM64": "sha256:placeholder",
+  "DISTROLESS_DEBUG_DIGEST_AMD64": "sha256:placeholder",
+  "DISTROLESS_DEBUG_DIGEST_ARM64": "sha256:placeholder",
+  "BUILD_DATE": "2024-01-01T00:00:00Z"
+}
+

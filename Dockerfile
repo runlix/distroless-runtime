@@ -1,5 +1,28 @@
+# Build metadata ARGs (available to all stages)
+ARG VERSION=1.0.0
+ARG BUILD_DATE
+ARG GIT_COMMIT
+# Base image digest ARGs (all digests for labels)
+ARG DEBIAN_DIGEST_AMD64
+ARG DEBIAN_DIGEST_ARM64
+ARG DISTROLESS_DIGEST_AMD64
+ARG DISTROLESS_DIGEST_ARM64
+ARG DISTROLESS_DEBUG_DIGEST_AMD64
+ARG DISTROLESS_DEBUG_DIGEST_ARM64
+# Selected digests (build script will set based on TARGETARCH and TARGETVARIANT)
+# Default to empty string - build script should always provide valid digests
+# If empty, FROM will fail (which is desired to enforce digest pinning)
+ARG DEBIAN_DIGEST=""
+ARG DISTROLESS_DIGEST=""
+
+# Architecture selection (set by build script)
+ARG TARGETARCH=amd64
+
 # STAGE 1 — build base libs
-FROM docker.io/library/debian:bookworm-slim AS runtime-deps
+# Build script will pass DEBIAN_DIGEST with the correct digest for TARGETARCH
+# If DEBIAN_DIGEST is empty or "sha256:placeholder", build script should not pass it
+# Format: debian:bookworm-slim@sha256:digest (when digest provided)
+FROM docker.io/library/debian:bookworm-slim@${DEBIAN_DIGEST} AS runtime-deps
 
 # Use BuildKit cache mounts to persist apt cache between builds
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
@@ -13,12 +36,12 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
  && rm -rf /var/lib/apt/lists/*
 
 # STAGE 2 — distroless final image
-# ARGs before FROM are available to FROM statement
-# TARGETARCH is automatically set by docker buildx based on --platform
 # TARGETVARIANT defaults to "latest" for production builds, "debug" for local development
-ARG TARGETARCH=amd64
 ARG TARGETVARIANT=latest
-FROM gcr.io/distroless/base-debian12:${TARGETVARIANT}-${TARGETARCH}
+# Build script will pass DISTROLESS_DIGEST with the correct digest for TARGETARCH and TARGETVARIANT
+# If DISTROLESS_DIGEST is empty or "sha256:placeholder", build script should not pass it
+# Format: gcr.io/distroless/base-debian12:latest-amd64@sha256:digest (when digest provided)
+FROM gcr.io/distroless/base-debian12:${TARGETVARIANT}-${TARGETARCH}@${DISTROLESS_DIGEST}
 
 # Set architecture-specific paths based on TARGETARCH
 ARG TARGETARCH=amd64
@@ -39,6 +62,17 @@ COPY --from=runtime-deps /usr/lib/${LIB_DIR} /usr/lib/${LIB_DIR}
 # Copy SSL certificates and timezone data - combined into single layer
 COPY --from=runtime-deps /etc/ssl/certs /etc/ssl/certs
 COPY --from=runtime-deps /usr/share/zoneinfo /usr/share/zoneinfo
+
+# Add metadata labels for traceability
+LABEL org.opencontainers.image.version="${VERSION}" \
+      org.opencontainers.image.created="${BUILD_DATE}" \
+      org.opencontainers.image.revision="${GIT_COMMIT}" \
+      io.runlix.base.debian.digest.amd64="${DEBIAN_DIGEST_AMD64}" \
+      io.runlix.base.debian.digest.arm64="${DEBIAN_DIGEST_ARM64}" \
+      io.runlix.base.distroless.digest.amd64="${DISTROLESS_DIGEST_AMD64}" \
+      io.runlix.base.distroless.digest.arm64="${DISTROLESS_DIGEST_ARM64}" \
+      io.runlix.base.distroless.debug.digest.amd64="${DISTROLESS_DEBUG_DIGEST_AMD64}" \
+      io.runlix.base.distroless.debug.digest.arm64="${DISTROLESS_DEBUG_DIGEST_ARM64}"
 
 # K8s security default
 USER 65532:65532
