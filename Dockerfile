@@ -13,8 +13,11 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
  && rm -rf /var/lib/apt/lists/*
 
 # STAGE 2 — distroless final image
+# ARGs before FROM are available to FROM statement
+# TARGETARCH is automatically set by docker buildx based on --platform
+# TARGETVARIANT defaults to "latest" for production builds, "debug" for local development
 ARG TARGETARCH=amd64
-ARG TARGETVARIANT=debug
+ARG TARGETVARIANT=latest
 FROM gcr.io/distroless/base-debian12:${TARGETVARIANT}-${TARGETARCH}
 
 # Set architecture-specific paths based on TARGETARCH
