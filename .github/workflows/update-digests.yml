@@ -1,0 +1,23 @@
+name: Update Digests
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'  # Daily at midnight UTC
+
+jobs:
+  update:
+    permissions:
+      contents: write
+      pull-requests: write
+    concurrency:
+      group: update-digests-release
+      cancel-in-progress: false
+    uses: runlix/build-workflow/.github/workflows/update-digests.yml@main
+    with:
+      repository: ${{ github.repository }}
+      branch: release
+      version_file_path: VERSION.json
+      auto_merge: false  # Set to true when ready to enable auto-merge
+    secrets: inherit
+
