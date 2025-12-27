@@ -3,6 +3,7 @@
   "extends": [
     "config:recommended"
   ],
+  "baseBranches": ["release"],
   "packageRules": [
     {
       "matchManagers": ["dockerfile"],
