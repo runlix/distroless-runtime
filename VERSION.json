@@ -1,11 +1,11 @@
 {
-  "version": "1.0.1",
+  "version": "1.0.2",
   "platforms": ["linux/amd64", "linux/arm64"],
   "base_images": {
     "debian": {
       "digests": {
-        "amd64": "sha256:placeholder",
-        "arm64": "sha256:placeholder"
+        "amd64": "sha256:ef5c368548841bdd8199a8606f6307402f7f2a2f8edc4acbc9c1c70c340bc023",
+        "arm64": "sha256:594f2f110240a0a9c94d6e2a1020f6a05b79f713fcacd8c122ad8ff26e31d107"
       }
     },
     "distroless": {
@@ -25,5 +25,5 @@
       }
     }
   },
-  "build_date": "2025-12-27T09:57:48Z"
+  "build_date": "2025-12-27T11:33:09Z"
 }
