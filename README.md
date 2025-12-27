@@ -1,14 +1,13 @@
 # Distroless Runtime
 
-Base Docker image containing runtime dependencies for media services (Sonarr, Radarr, etc.).
+Base Docker image.
 
 ## What's Included
 
-- ffmpeg - Video/audio processing
-- mediainfo - Media metadata extraction
-- sqlite3 - Database engine
-- libssl3, libc6 - Required for .NET binaries
-- ca-certificates - HTTPS/TLS support
+- libc6 - Standard C library (required for .NET binaries)
+- libssl3 - SSL/TLS library (required for HTTPS operations)
+- libicu72 - International Components for Unicode (required for .NET globalization)
+- ca-certificates - Certificate authority certificates (for HTTPS/TLS support)
 - tzdata - Timezone data
 
 ## Usage
@@ -16,11 +15,6 @@ Base Docker image containing runtime dependencies for media services (Sonarr, Ra
 ```dockerfile
 FROM ghcr.io/runlix/distroless-runtime:release
 ```
-
-## Branch Structure
-
-- **`main` branch**: Contains metadata files (README.md, links.json, tags.json, call-build.yml)
-- **`release` branch**: Contains Dockerfile and build-related files
 
 ## Tags
 
