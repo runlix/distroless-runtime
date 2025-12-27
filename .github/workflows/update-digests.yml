@@ -18,6 +18,6 @@ jobs:
       repository: ${{ github.repository }}
       branch: release
       version_file_path: VERSION.json
-      auto_merge: false  # Set to true when ready to enable auto-merge
+      auto_merge: 'false'  # Set to 'true' when ready to enable auto-merge
     secrets: inherit
 
