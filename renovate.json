@@ -3,7 +3,7 @@
   "extends": [
     "config:recommended"
   ],
-  "baseBranches": ["main", "release"],
+  "baseBranches": ["release"],
   "packageRules": [
     {
       "matchManagers": ["github-actions"],
@@ -11,7 +11,7 @@
     },
     {
       "matchManagers": ["custom.regex"],
-      "matchFileNames": ["distroless-runtime/VERSION.json"],
+      "matchFileNames": ["VERSION.json"],
       "matchUpdateTypes": ["digest"],
       "groupName": "Base Image Digests",
       "automerge": false,
@@ -23,7 +23,7 @@
     {
       "customType": "regex",
       "description": "Update Debian builder image digests in VERSION.json",
-      "fileMatch": ["^distroless-runtime/VERSION\\.json$"],
+      "fileMatch": ["^VERSION\\.json$"],
       "matchStrings": [
         "\"image\":\\s*\"docker.io/library/debian\",\\s*\"tag\":\\s*\"bookworm-slim\",\\s*\"digest\":\\s*\"(?<currentValue>sha256:[a-f0-9]{64})\""
       ],
@@ -35,7 +35,7 @@
     {
       "customType": "regex",
       "description": "Update Distroless base image digests in VERSION.json",
-      "fileMatch": ["^distroless-runtime/VERSION\\.json$"],
+      "fileMatch": ["^VERSION\\.json$"],
       "matchStrings": [
         "\"image\":\\s*\"gcr.io/distroless/base-debian12\",\\s*\"tag\":\\s*\"(?<currentTag>latest|debug)-(?<currentArch>amd64|arm64)\",\\s*\"digest\":\\s*\"(?<currentValue>sha256:[a-f0-9]{64})\""
       ],
