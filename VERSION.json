@@ -17,7 +17,7 @@
                 "tag": "latest-amd64",
                 "digest": "sha256:7aa57dbe6daf724d489941dde747932bfbba936b317b021ec7b8362ed5742987"
             },
-            "dockerfile": "Dockerfile",
+            "dockerfile": "linux-amd64.Dockerfile",
             "tags": []
         },
         {
@@ -34,7 +34,7 @@
                 "tag": "debug-amd64",
                 "digest": "sha256:8e997defe58872786041e797f99565a56cb81b8a4069a8a876ac28fdc4e67db7"
             },
-            "dockerfile": "Dockerfile",
+            "dockerfile": "linux-amd64.Dockerfile",
             "tags": []
         },
         {
@@ -51,7 +51,7 @@
                 "tag": "latest-arm64",
                 "digest": "sha256:e1bd9ae4515d76130ff4266a7e03ed4f18775cc4b5afb77c25acc6296be8d6bc"
             },
-            "dockerfile": "Dockerfile",
+            "dockerfile": "linux-arm64.Dockerfile",
             "tags": []
         },
         {
@@ -68,7 +68,7 @@
                 "tag": "debug-arm64",
                 "digest": "sha256:d7a155c7e05442954ffbcdab1d1c6ea0a92e88eed4638ac927bf7448a0037bb0"
             },
-            "dockerfile": "Dockerfile",
+            "dockerfile": "linux-arm64.Dockerfile",
             "tags": []
         }
     ]

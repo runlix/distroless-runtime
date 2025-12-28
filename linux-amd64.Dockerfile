@@ -1,6 +1,6 @@
 # Builder tag from VERSION.json builder.tag (e.g., "bookworm-slim")
 ARG BUILDER_TAG=bookworm-slim
-# Base tag (variant-arch) from VERSION.json base.tag (e.g., "latest-amd64", "debug-arm64")
+# Base tag (variant-arch) from VERSION.json base.tag (e.g., "latest-amd64", "debug-amd64")
 ARG BASE_TAG=latest-amd64
 # Selected digests (build script will set based on target configuration)
 # Default to empty string - build script should always provide valid digests
@@ -29,9 +29,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
 # Format: gcr.io/distroless/base-debian12:latest-amd64@sha256:digest (when digest provided)
 FROM gcr.io/distroless/base-debian12:${BASE_TAG}@${BASE_DIGEST}
 
-# Architecture-specific paths (set by build script)
-# amd64 -> x86_64-linux-gnu -> ld-linux-x86-64.so.2
-# arm64 -> aarch64-linux-gnu -> ld-linux-aarch64.so.1
+# Hardcoded for amd64 - no conditionals needed!
 ARG LIB_DIR=x86_64-linux-gnu
 ARG LD_SO=ld-linux-x86-64.so.2
 
@@ -49,3 +47,4 @@ COPY --from=runtime-deps /usr/share/zoneinfo /usr/share/zoneinfo
 USER 65532:65532
 WORKDIR /app
 CMD ["--help"]
+
