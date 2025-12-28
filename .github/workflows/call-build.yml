@@ -11,7 +11,7 @@ jobs:
     permissions:
       contents: write
       packages: write
-    uses: runlix/build-workflow/.github/workflows/build-on-call.yml@main
+    uses: runlix/build-workflow/.github/workflows/build-on-call-v2.yml@main
     with:
       image_name: distroless-runtime
       dockerfile_path: Dockerfile
