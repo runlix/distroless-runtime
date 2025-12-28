@@ -3,22 +3,44 @@
   "extends": [
     "config:recommended"
   ],
-  "baseBranches": ["release"],
+  "baseBranches": ["main", "release"],
   "packageRules": [
     {
-      "matchManagers": ["dockerfile"],
-      "matchDepTypes": ["base"],
-      "matchPackageNames": ["gcr.io/distroless/base-debian12"],
-      "groupName": "Distroless Base Image",
-      "pinDigests": true
+      "matchManagers": ["github-actions"],
+      "groupName": "GitHub Actions"
     },
     {
-      "matchManagers": ["dockerfile"],
-      "matchDepTypes": ["base"],
-      "matchPackageNames": ["debian:bookworm-slim"],
-      "groupName": "Debian Base Image",
-      "pinDigests": true
+      "matchManagers": ["regex"],
+      "matchFiles": ["distroless-runtime/VERSION.json"],
+      "matchUpdateTypes": ["digest"],
+      "groupName": "Base Image Digests",
+      "automerge": false,
+      "commitMessagePrefix": "chore(deps):",
+      "commitMessageSuffix": " [skip ci]"
+    }
+  ],
+  "regexManagers": [
+    {
+      "description": "Update Debian builder image digests",
+      "fileMatch": ["^distroless-runtime/VERSION\\.json$"],
+      "matchStrings": [
+        "\"builder\":\\s*{[^}]*\"image\":\\s*\"docker.io/library/debian\",[^}]*\"tag\":\\s*\"bookworm-slim\",[^}]*\"digest\":\\s*\"(?<currentDigest>sha256:[a-f0-9]+)\""
+      ],
+      "datasourceTemplate": "docker",
+      "depNameTemplate": "docker.io/library/debian",
+      "versioningTemplate": "sha256",
+      "extractVersionTemplate": "^(?<version>sha256:[a-f0-9]+)$"
+    },
+    {
+      "description": "Update Distroless base image digests",
+      "fileMatch": ["^distroless-runtime/VERSION\\.json$"],
+      "matchStrings": [
+        "\"base\":\\s*{[^}]*\"image\":\\s*\"gcr.io/distroless/base-debian12\",[^}]*\"tag\":\\s*\"(?<currentTag>latest|debug)-(?<arch>amd64|arm64)\",[^}]*\"digest\":\\s*\"(?<currentDigest>sha256:[a-f0-9]+)\""
+      ],
+      "datasourceTemplate": "docker",
+      "depNameTemplate": "gcr.io/distroless/base-debian12",
+      "versioningTemplate": "sha256",
+      "extractVersionTemplate": "^(?<version>sha256:[a-f0-9]+)$"
     }
   ]
 }
-
