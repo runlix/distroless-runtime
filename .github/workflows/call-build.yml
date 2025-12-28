@@ -12,8 +12,4 @@ jobs:
       contents: write
       packages: write
     uses: runlix/build-workflow/.github/workflows/build-on-call-v2.yml@main
-    with:
-      image_name: distroless-runtime
-      dockerfile_path: Dockerfile
-      build_context: .
     secrets: inherit
