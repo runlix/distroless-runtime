@@ -5,6 +5,7 @@
     "targets": [
         {
             "name": "linux-amd64-latest",
+            "variant": "latest",
             "enabled": true,
             "arch": "linux-amd64",
             "builder": {
@@ -22,6 +23,7 @@
         },
         {
             "name": "linux-amd64-debug",
+            "variant": "debug",
             "enabled": false,
             "arch": "linux-amd64",
             "builder": {
@@ -39,6 +41,7 @@
         },
         {
             "name": "linux-arm64-latest",
+            "variant": "latest",
             "enabled": true,
             "arch": "linux-arm64",
             "builder": {
@@ -56,6 +59,7 @@
         },
         {
             "name": "linux-arm64-debug",
+            "variant": "debug",
             "enabled": false,
             "arch": "linux-arm64",
             "builder": {
