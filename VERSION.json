@@ -24,7 +24,7 @@
         {
             "name": "linux-amd64-debug",
             "variant": "debug",
-            "enabled": false,
+            "enabled": true,
             "arch": "linux-amd64",
             "builder": {
                 "image": "docker.io/library/debian",
@@ -60,7 +60,7 @@
         {
             "name": "linux-arm64-debug",
             "variant": "debug",
-            "enabled": false,
+            "enabled": true,
             "arch": "linux-arm64",
             "builder": {
                 "image": "docker.io/library/debian",
