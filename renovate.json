@@ -25,7 +25,7 @@
       "description": "Update Debian builder image digests in VERSION.json",
       "fileMatch": ["^distroless-runtime/VERSION\\.json$"],
       "matchStrings": [
-        "\"image\":\\s*\"docker.io/library/debian\",\\s*\"tag\":\\s*\"bookworm-slim\",\\s*\"digest\":\\s*\"(?<currentDigest>sha256:[a-f0-9]{64})\""
+        "\"image\":\\s*\"docker.io/library/debian\",\\s*\"tag\":\\s*\"bookworm-slim\",\\s*\"digest\":\\s*\"(?<currentValue>sha256:[a-f0-9]{64})\""
       ],
       "datasourceTemplate": "docker",
       "depNameTemplate": "docker.io/library/debian:bookworm-slim",
@@ -37,7 +37,7 @@
       "description": "Update Distroless base image digests in VERSION.json",
       "fileMatch": ["^distroless-runtime/VERSION\\.json$"],
       "matchStrings": [
-        "\"image\":\\s*\"gcr.io/distroless/base-debian12\",\\s*\"tag\":\\s*\"(?<currentTag>latest|debug)-(?<currentArch>amd64|arm64)\",\\s*\"digest\":\\s*\"(?<currentDigest>sha256:[a-f0-9]{64})\""
+        "\"image\":\\s*\"gcr.io/distroless/base-debian12\",\\s*\"tag\":\\s*\"(?<currentTag>latest|debug)-(?<currentArch>amd64|arm64)\",\\s*\"digest\":\\s*\"(?<currentValue>sha256:[a-f0-9]{64})\""
       ],
       "datasourceTemplate": "docker",
       "depNameTemplate": "gcr.io/distroless/base-debian12",
