@@ -27,7 +27,7 @@
             "builder": {
                 "image": "docker.io/library/debian",
                 "tag": "bookworm-slim",
-                "digest": "sha256:ef5c368548841bdd8199a8606f6307402f7f4acbc9c1c70c340bc023"
+                "digest": "sha256:ef5c368548841bdd8199a8606f6307402f7f2a2f8edc4acbc9c1c70c340bc023"
             },
             "base": {
                 "image": "gcr.io/distroless/base-debian12",
@@ -44,7 +44,7 @@
             "builder": {
                 "image": "docker.io/library/debian",
                 "tag": "bookworm-slim",
-                "digest": "sha256:ef5c368548841bdd8199a8606f6307402f7f2a2f8edc4acbc9c1c70c340bc023"
+                "digest": "sha256:594f2f110240a0a9c94d6e2a1020f6a05b79f713fcacd8c122ad8ff26e31d107"
             },
             "base": {
                 "image": "gcr.io/distroless/base-debian12",
@@ -61,7 +61,7 @@
             "builder": {
                 "image": "docker.io/library/debian",
                 "tag": "bookworm-slim",
-                "digest": "sha256:ef5c368548841bdd8199a8606f6307402f7f2a2f8edc4acbc9c1c70c340bc023"
+                "digest": "sha256:594f2f110240a0a9c94d6e2a1020f6a05b79f713fcacd8c122ad8ff26e31d107"
             },
             "base": {
                 "image": "gcr.io/distroless/base-debian12",
