@@ -11,5 +11,5 @@ jobs:
     permissions:
       contents: write
       packages: write
-    uses: runlix/build-workflow/.github/workflows/build-on-call-v2.yml@main
+    uses: runlix/build-workflow/.github/workflows/build-on-call.yml@main
     secrets: inherit
