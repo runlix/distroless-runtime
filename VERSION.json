@@ -33,7 +33,7 @@
         "tag": "bookworm-slim"
       },
       "dockerfile": "linux-amd64.Dockerfile",
-      "enabled": false,
+      "enabled": true,
       "name": "linux-amd64-debug",
       "tags": [],
       "variant": "debug"
@@ -69,7 +69,7 @@
         "tag": "bookworm-slim"
       },
       "dockerfile": "linux-arm64.Dockerfile",
-      "enabled": false,
+      "enabled": true,
       "name": "linux-arm64-debug",
       "tags": [],
       "variant": "debug"
