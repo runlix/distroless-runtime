@@ -1,79 +1,79 @@
 {
-    "version": "1.0.3",
-    "sbranch": "main",
-    "build_date": "2025-12-27T11:33:09Z",
-    "targets": [
-        {
-            "name": "linux-amd64-latest",
-            "variant": "latest",
-            "enabled": true,
-            "arch": "linux-amd64",
-            "builder": {
-                "image": "docker.io/library/debian",
-                "tag": "bookworm-slim",
-                "digest": "sha256:ef5c368548841bdd8199a8606f6307402f7f2a2f8edc4acbc9c1c70c340bc023"
-            },
-            "base": {
-                "image": "gcr.io/distroless/base-debian12",
-                "tag": "latest-amd64",
-                "digest": "sha256:7aa57dbe6daf724d489941dde747932bfbba936b317b021ec7b8362ed5742987"
-            },
-            "dockerfile": "linux-amd64.Dockerfile",
-            "tags": []
-        },
-        {
-            "name": "linux-amd64-debug",
-            "variant": "debug",
-            "enabled": false,
-            "arch": "linux-amd64",
-            "builder": {
-                "image": "docker.io/library/debian",
-                "tag": "bookworm-slim",
-                "digest": "sha256:ef5c368548841bdd8199a8606f6307402f7f2a2f8edc4acbc9c1c70c340bc023"
-            },
-            "base": {
-                "image": "gcr.io/distroless/base-debian12",
-                "tag": "debug-amd64",
-                "digest": "sha256:8e997defe58872786041e797f99565a56cb81b8a4069a8a876ac28fdc4e67db7"
-            },
-            "dockerfile": "linux-amd64.Dockerfile",
-            "tags": []
-        },
-        {
-            "name": "linux-arm64-latest",
-            "variant": "latest",
-            "enabled": true,
-            "arch": "linux-arm64",
-            "builder": {
-                "image": "docker.io/library/debian",
-                "tag": "bookworm-slim",
-                "digest": "sha256:594f2f110240a0a9c94d6e2a1020f6a05b79f713fcacd8c122ad8ff26e31d107"
-            },
-            "base": {
-                "image": "gcr.io/distroless/base-debian12",
-                "tag": "latest-arm64",
-                "digest": "sha256:e1bd9ae4515d76130ff4266a7e03ed4f18775cc4b5afb77c25acc6296be8d6bc"
-            },
-            "dockerfile": "linux-arm64.Dockerfile",
-            "tags": []
-        },
-        {
-            "name": "linux-arm64-debug",
-            "variant": "debug",
-            "enabled": false,
-            "arch": "linux-arm64",
-            "builder": {
-                "image": "docker.io/library/debian",
-                "tag": "bookworm-slim",
-                "digest": "sha256:594f2f110240a0a9c94d6e2a1020f6a05b79f713fcacd8c122ad8ff26e31d107"
-            },
-            "base": {
-                "image": "gcr.io/distroless/base-debian12",
-                "tag": "debug-arm64",
-                "digest": "sha256:d7a155c7e05442954ffbcdab1d1c6ea0a92e88eed4638ac927bf7448a0037bb0"
-            },
-            "dockerfile": "linux-arm64.Dockerfile",
-            "tags": []
-        }
-    ]
+  "build_date": "2025-12-29T08:49:05Z",
+  "sbranch": "main",
+  "targets": [
+    {
+      "arch": "linux-amd64",
+      "base": {
+        "digest": "sha256:7aa57dbe6daf724d489941dde747932bfbba936b317b021ec7b8362ed5742987",
+        "image": "gcr.io/distroless/base-debian12",
+        "tag": "latest-amd64"
+      },
+      "builder": {
+        "digest": "sha256:ef5c368548841bdd8199a8606f6307402f7f2a2f8edc4acbc9c1c70c340bc023",
+        "image": "docker.io/library/debian",
+        "tag": "bookworm-slim"
+      },
+      "dockerfile": "linux-amd64.Dockerfile",
+      "enabled": true,
+      "name": "linux-amd64-latest",
+      "tags": [],
+      "variant": "latest"
+    },
+    {
+      "arch": "linux-amd64",
+      "base": {
+        "digest": "sha256:8e997defe58872786041e797f99565a56cb81b8a4069a8a876ac28fdc4e67db7",
+        "image": "gcr.io/distroless/base-debian12",
+        "tag": "debug-amd64"
+      },
+      "builder": {
+        "digest": "sha256:ef5c368548841bdd8199a8606f6307402f7f2a2f8edc4acbc9c1c70c340bc023",
+        "image": "docker.io/library/debian",
+        "tag": "bookworm-slim"
+      },
+      "dockerfile": "linux-amd64.Dockerfile",
+      "enabled": false,
+      "name": "linux-amd64-debug",
+      "tags": [],
+      "variant": "debug"
+    },
+    {
+      "arch": "linux-arm64",
+      "base": {
+        "digest": "sha256:e1bd9ae4515d76130ff4266a7e03ed4f18775cc4b5afb77c25acc6296be8d6bc",
+        "image": "gcr.io/distroless/base-debian12",
+        "tag": "latest-arm64"
+      },
+      "builder": {
+        "digest": "sha256:594f2f110240a0a9c94d6e2a1020f6a05b79f713fcacd8c122ad8ff26e31d107",
+        "image": "docker.io/library/debian",
+        "tag": "bookworm-slim"
+      },
+      "dockerfile": "linux-arm64.Dockerfile",
+      "enabled": true,
+      "name": "linux-arm64-latest",
+      "tags": [],
+      "variant": "latest"
+    },
+    {
+      "arch": "linux-arm64",
+      "base": {
+        "digest": "sha256:d7a155c7e05442954ffbcdab1d1c6ea0a92e88eed4638ac927bf7448a0037bb0",
+        "image": "gcr.io/distroless/base-debian12",
+        "tag": "debug-arm64"
+      },
+      "builder": {
+        "digest": "sha256:594f2f110240a0a9c94d6e2a1020f6a05b79f713fcacd8c122ad8ff26e31d107",
+        "image": "docker.io/library/debian",
+        "tag": "bookworm-slim"
+      },
+      "dockerfile": "linux-arm64.Dockerfile",
+      "enabled": false,
+      "name": "linux-arm64-debug",
+      "tags": [],
+      "variant": "debug"
+    }
+  ],
+  "version": "2025.12.29.1"
 }
