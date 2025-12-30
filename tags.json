@@ -2,23 +2,23 @@
   "release-debug": {
     "description": "release-debug",
     "hide": false,
-    "last_updated": "2025-12-29T09:57:32.000Z",
-    "last_updated_url": "https://github.com/runlix/distroless-runtime/actions/runs/20570050905",
+    "last_updated": "2025-12-30T12:51:12.000Z",
+    "last_updated_url": "https://github.com/runlix/distroless-runtime/actions/runs/20596889227",
     "tags": [
       "release-debug",
       "release-2025.12.29.1-debug",
-      "release-7973fcd-debug"
+      "release-67dc865-debug"
     ]
   },
   "release-latest": {
     "description": "release-latest",
     "hide": false,
-    "last_updated": "2025-12-29T09:57:32.000Z",
-    "last_updated_url": "https://github.com/runlix/distroless-runtime/actions/runs/20570050905",
+    "last_updated": "2025-12-30T12:51:12.000Z",
+    "last_updated_url": "https://github.com/runlix/distroless-runtime/actions/runs/20596889227",
     "tags": [
       "release-latest",
       "release-2025.12.29.1-latest",
-      "release-7973fcd-latest"
+      "release-67dc865-latest"
     ]
   },
   "update-digests-20596719002-1767098350-debug": {
