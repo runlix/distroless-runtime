@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - release
+    paths:
+      - linux-amd64.Dockerfile
+      - linux-arm64.Dockerfile
+      - VERSION.json
 
 jobs:
   build:

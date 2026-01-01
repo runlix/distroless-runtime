@@ -8,6 +8,10 @@ on:
       - opened
       - reopened
       - synchronize
+    paths:
+      - linux-amd64.Dockerfile
+      - linux-arm64.Dockerfile
+      - VERSION.json
 
 jobs:
   test:
