@@ -1,5 +1,5 @@
 # Builder tag from VERSION.json builder.tag (e.g., "bookworm-slim")
-ARG BUILDER_TAG=bookworm-slim
+ARG BUILDER_TAG=bookworm-slim 
 # Base tag (variant-arch) from VERSION.json base.tag (e.g., "latest-amd64", "debug-amd64")
 ARG BASE_TAG=latest-amd64
 # Selected digests (build script will set based on target configuration)
