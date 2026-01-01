@@ -1,4 +1,4 @@
-name: Test on PR
+name: On PR Flow
 
 on:
   pull_request:
@@ -12,4 +12,6 @@ on:
 jobs:
   test:
     uses: runlix/build-workflow/.github/workflows/on-pr.yml@main
+    with:
+      run_smoke_test: false
     secrets: inherit

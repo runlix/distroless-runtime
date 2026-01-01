@@ -46,5 +46,3 @@ COPY --from=runtime-deps /usr/share/zoneinfo /usr/share/zoneinfo
 # K8s security default
 USER 65532:65532
 WORKDIR /app
-CMD ["--help"]
-

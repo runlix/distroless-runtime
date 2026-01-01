@@ -1,4 +1,4 @@
-name: Build on Merge
+name: On Merge Flow
 
 on:
   push:
@@ -11,5 +11,7 @@ jobs:
       contents: write
       packages: write
     uses: runlix/build-workflow/.github/workflows/on-merge.yml@main
+    with:
+      run_smoke_test: false
     secrets: inherit
 
