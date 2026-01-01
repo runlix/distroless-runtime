@@ -1,0 +1,15 @@
+name: Test on PR
+
+on:
+  pull_request:
+    branches:
+      - release
+    types:
+      - opened
+      - reopened
+      - synchronize
+
+jobs:
+  test:
+    uses: runlix/build-workflow/.github/workflows/on-pr.yml@main
+    secrets: inherit
