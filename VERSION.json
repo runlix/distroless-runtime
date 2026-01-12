@@ -1,11 +1,11 @@
 {
-  "build_date": "2025-12-30T16:20:41Z",
+  "build_date": "2026-01-12T01:14:31Z",
   "sbranch": "main",
   "targets": [
     {
       "arch": "linux-amd64",
       "base": {
-        "digest": "sha256:7aa57dbe6daf724d489941dde747932bfbba936b317b021ec7b8362ed5742987",
+        "digest": "sha256:eb302860a73aa69eeea9437bf4346f9c23499805953a1a2cf26b0d27f021c109",
         "image": "gcr.io/distroless/base-debian12",
         "tag": "latest-amd64"
       },
@@ -23,7 +23,7 @@
     {
       "arch": "linux-amd64",
       "base": {
-        "digest": "sha256:8e997defe58872786041e797f99565a56cb81b8a4069a8a876ac28fdc4e67db7",
+        "digest": "sha256:8bf110321901e1cc78589b6067e13e73f99c5c0fcf67a792122fc73bebb9bafd",
         "image": "gcr.io/distroless/base-debian12",
         "tag": "debug-amd64"
       },
@@ -41,7 +41,7 @@
     {
       "arch": "linux-arm64",
       "base": {
-        "digest": "sha256:e1bd9ae4515d76130ff4266a7e03ed4f18775cc4b5afb77c25acc6296be8d6bc",
+        "digest": "sha256:372adf30255bcdfc80b22ee926fe19c163a7675b737d201f4a09be4877a69e3a",
         "image": "gcr.io/distroless/base-debian12",
         "tag": "latest-arm64"
       },
@@ -59,7 +59,7 @@
     {
       "arch": "linux-arm64",
       "base": {
-        "digest": "sha256:d7a155c7e05442954ffbcdab1d1c6ea0a92e88eed4638ac927bf7448a0037bb0",
+        "digest": "sha256:260bbcb5169c0d0ec5fbdc81d319cbb0a7665eff3f1da90fb15bebe513dc6273",
         "image": "gcr.io/distroless/base-debian12",
         "tag": "debug-arm64"
       },
@@ -75,5 +75,5 @@
       "variant": "debug"
     }
   ],
-  "version": "2025.12.30.1"
+  "version": "2026.01.12.1"
 }
