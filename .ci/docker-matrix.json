@@ -1,5 +1,4 @@
 {
-  "$schema": "https://raw.githubusercontent.com/runlix/build-workflow/main/schema/docker-matrix-schema.json",
   "variants": [
     {
       "name": "default",
