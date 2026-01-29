@@ -16,7 +16,7 @@
       "tag_suffix": "",
       "build_args": {
         "BUILDER_TAG": "bookworm-slim",
-        "BUILDER_DIGEST": "sha256:a1363ada3b45cb3ebc74c78943558f8b0c2b59aaa194d8224e1b02cfd5d78583",
+        "BUILDER_DIGEST": "sha256:56ff6d36d4eb3db13a741b342ec466f121480b5edded42e4b7ee850ce7a418ee",
         "BASE_TAG_PREFIX": "latest"
       },
       "test_script": ""
@@ -36,7 +36,7 @@
       "tag_suffix": "-debug",
       "build_args": {
         "BUILDER_TAG": "bookworm-slim",
-        "BUILDER_DIGEST": "sha256:a1363ada3b45cb3ebc74c78943558f8b0c2b59aaa194d8224e1b02cfd5d78583",
+        "BUILDER_DIGEST": "sha256:56ff6d36d4eb3db13a741b342ec466f121480b5edded42e4b7ee850ce7a418ee",
         "BASE_TAG_PREFIX": "debug"
       },
       "test_script": ""
