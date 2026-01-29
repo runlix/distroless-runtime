@@ -8,9 +8,6 @@ on:
       - '*.Dockerfile'
       - 'linux-*.Dockerfile'
       - 'VERSION.json'
-    paths-ignore:
-      - '**.md'
-      - 'docs/**'
   workflow_dispatch:
     inputs:
       dry_run:
