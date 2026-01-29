@@ -17,10 +17,10 @@ on:
         type: boolean
 
 permissions:
-  contents: read
-  packages: write
-  pull-requests: write
-  actions: read
+  contents: write       # Required by reusable workflow (used in release mode only)
+  packages: write       # Push images to GHCR
+  pull-requests: write  # Comment on PR with build results
+  actions: read         # Query workflow artifacts
 
 jobs:
   validate:
