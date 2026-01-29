@@ -13,6 +13,7 @@ on:
 permissions:
   contents: write       # Update releases.json in main branch
   packages: write       # Push images to GHCR, delete platform tags
+  pull-requests: write  # Required by reusable workflow (not used in release mode)
   actions: read         # Query workflow artifacts and PR status
 
 concurrency:
