@@ -1,0 +1,45 @@
+{
+  "$schema": "https://raw.githubusercontent.com/runlix/build-workflow/main/schema/docker-matrix-schema.json",
+  "variants": [
+    {
+      "name": "default",
+      "enabled": true,
+      "default": true,
+      "platforms": [
+        "linux/amd64",
+        "linux/arm64"
+      ],
+      "dockerfiles": {
+        "linux/amd64": "linux-amd64.Dockerfile",
+        "linux/arm64": "linux-arm64.Dockerfile"
+      },
+      "tag_suffix": "",
+      "build_args": {
+        "BUILDER_TAG": "bookworm-slim",
+        "BUILDER_DIGEST": "sha256:a1363ada3b45cb3ebc74c78943558f8b0c2b59aaa194d8224e1b02cfd5d78583",
+        "BASE_TAG_PREFIX": "latest"
+      },
+      "test_script": ""
+    },
+    {
+      "name": "debug",
+      "enabled": true,
+      "default": false,
+      "platforms": [
+        "linux/amd64",
+        "linux/arm64"
+      ],
+      "dockerfiles": {
+        "linux/amd64": "linux-amd64.Dockerfile",
+        "linux/arm64": "linux-arm64.Dockerfile"
+      },
+      "tag_suffix": "-debug",
+      "build_args": {
+        "BUILDER_TAG": "bookworm-slim",
+        "BUILDER_DIGEST": "sha256:a1363ada3b45cb3ebc74c78943558f8b0c2b59aaa194d8224e1b02cfd5d78583",
+        "BASE_TAG_PREFIX": "debug"
+      },
+      "test_script": ""
+    }
+  ]
+}

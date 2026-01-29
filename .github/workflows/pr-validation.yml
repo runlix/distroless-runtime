@@ -1,0 +1,34 @@
+name: PR Validation
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - '.ci/docker-matrix.json'
+      - '*.Dockerfile'
+      - 'linux-*.Dockerfile'
+      - 'VERSION.json'
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Skip image push (dry run)'
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+  packages: write
+  pull-requests: write
+  actions: read
+
+jobs:
+  validate:
+    uses: runlix/build-workflow/.github/workflows/build-images.yml@main
+    with:
+      pr_mode: true
+      dry_run: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || false }}
+    secrets: inherit
