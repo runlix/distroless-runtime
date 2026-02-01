@@ -1,14 +1,14 @@
 {
   "distroless-runtime": {
     "version": null,
-    "sha": "3cfde0669a692a9d5e2836d4b6ee69bffc9ea4c4",
-    "short_sha": "3cfde06",
-    "timestamp": "2026-02-01T11:43:14Z",
+    "sha": "4830b335aac695ccff3a2eca46b9aebe0a2790bb",
+    "short_sha": "4830b33",
+    "timestamp": "2026-02-01T13:36:37Z",
     "manifests": [
-      "3cfde06-debug",
-      "3cfde06-debug",
-      "3cfde06-stable",
-      "3cfde06-stable"
+      "4830b33-debug",
+      "4830b33-debug",
+      "4830b33-stable",
+      "4830b33-stable"
     ]
   }
 }
