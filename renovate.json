@@ -1,0 +1,65 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "Renovate configuration for docker-matrix.json updates",
+  "extends": [
+    "config:recommended"
+  ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "Update Debian builder images (BUILDER_TAG + BUILDER_DIGEST) - https://docs.renovatebot.com/modules/manager/regex/",
+      "fileMatch": ["^\\.ci/docker-matrix\\.json$"],
+      "matchStrings": [
+        "\"BUILDER_TAG\"\\s*:\\s*\"(?<currentValue>[^\"]+)\"[\\s\\S]*?\"BUILDER_DIGEST\"\\s*:\\s*\"(?<currentDigest>sha256:[a-f0-9]{64})\""
+      ],
+      "depNameTemplate": "docker.io/library/debian",
+      "datasourceTemplate": "docker"
+    },
+    {
+      "customType": "regex",
+      "description": "Update Distroless base images (BASE_TAG + BASE_DIGEST) - https://docs.renovatebot.com/modules/datasource/docker/",
+      "fileMatch": ["^\\.ci/docker-matrix\\.json$"],
+      "matchStrings": [
+        "\"BASE_TAG\"\\s*:\\s*\"(?<currentValue>[^\"]+)\"[\\s\\S]*?\"BASE_DIGEST\"\\s*:\\s*\"(?<currentDigest>sha256:[a-f0-9]{64})\""
+      ],
+      "depNameTemplate": "gcr.io/distroless/base-debian12",
+      "datasourceTemplate": "docker"
+    }
+  ],
+  "packageRules": [
+    {
+      "description": "Group all docker-matrix.json updates into weekly PRs",
+      "matchFileNames": ["**/.ci/docker-matrix.json"],
+      "groupName": "Docker base images",
+      "schedule": ["before 3am on monday"]
+    },
+    {
+      "description": "Separate Debian builder updates - https://docs.renovatebot.com/configuration-options/#packagerules",
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["docker.io/library/debian"],
+      "groupName": "Debian builder",
+      "commitMessageTopic": "Debian builder image"
+    },
+    {
+      "description": "Separate Distroless base updates",
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["gcr.io/distroless/base-debian12"],
+      "groupName": "Distroless base",
+      "commitMessageTopic": "Distroless base image"
+    },
+    {
+      "description": "Auto-merge digest-only updates (security patches) - https://docs.renovatebot.com/key-concepts/automerge/",
+      "matchFileNames": ["**/.ci/docker-matrix.json"],
+      "matchUpdateTypes": ["digest"],
+      "automerge": true,
+      "automergeType": "pr",
+      "automergeStrategy": "squash"
+    }
+  ],
+  "dependencyDashboard": true,
+  "dependencyDashboardTitle": "🔄 Dependency Updates Dashboard",
+  "labels": ["dependencies", "docker"],
+  "timezone": "UTC",
+  "prConcurrentLimit": 3,
+  "prHourlyLimit": 1
+}
