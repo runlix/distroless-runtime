@@ -29,10 +29,10 @@
   ],
   "packageRules": [
     {
-      "description": "Group all docker-matrix.json updates into weekly PRs",
+      "description": "Group all docker-matrix.json updates into daily PRs",
       "matchFileNames": ["**/.ci/docker-matrix.json"],
       "groupName": "Docker base images",
-      "schedule": ["before 3am on monday"]
+      "schedule": ["before 3am"]
     },
     {
       "description": "Separate Debian builder updates - https://docs.renovatebot.com/configuration-options/#packagerules",
