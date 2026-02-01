@@ -12,8 +12,10 @@
       },
       "tag_suffix": "-stable",
       "build_args": {
+        "BUILDER_IMAGE": "docker.io/library/debian",
         "BUILDER_TAG": "bookworm-slim",
         "BUILDER_DIGEST": "sha256:09c53e50b5110eb26e0932ab77934481ce9c0068069d4f28e3e7493e51323bfe",
+        "BASE_IMAGE": "gcr.io/distroless/base-debian12",
         "BASE_TAG": "latest-amd64",
         "BASE_DIGEST": "sha256:d5f7dca58e3db53d1de502bd1a747ecb1110cf6b0773af129f951ee11e2e3ed4"
       },
@@ -31,8 +33,10 @@
       },
       "tag_suffix": "-stable",
       "build_args": {
+        "BUILDER_IMAGE": "docker.io/library/debian",
         "BUILDER_TAG": "bookworm-slim",
         "BUILDER_DIGEST": "sha256:79abd3da4379967c72ac0c0e2dc9ac2204143b92224fada931ef855b8559df87",
+        "BASE_IMAGE": "gcr.io/distroless/base-debian12",
         "BASE_TAG": "latest-arm64",
         "BASE_DIGEST": "sha256:ba2aeab48a1dadbd47ac4ce37b7f6084043a8f59172f8b73a3ede3c3e1a71be4"
       },
@@ -50,8 +54,10 @@
       },
       "tag_suffix": "-debug",
       "build_args": {
+        "BUILDER_IMAGE": "docker.io/library/debian",
         "BUILDER_TAG": "bookworm-slim",
         "BUILDER_DIGEST": "sha256:09c53e50b5110eb26e0932ab77934481ce9c0068069d4f28e3e7493e51323bfe",
+        "BASE_IMAGE": "gcr.io/distroless/base-debian12",
         "BASE_TAG": "debug-amd64",
         "BASE_DIGEST": "sha256:390fbd1c6954d0499687c031097557bd0c3834df0a8f9ad76e5dd86ca8bc22f1"
       },
@@ -69,8 +75,10 @@
       },
       "tag_suffix": "-debug",
       "build_args": {
+        "BUILDER_IMAGE": "docker.io/library/debian",
         "BUILDER_TAG": "bookworm-slim",
         "BUILDER_DIGEST": "sha256:79abd3da4379967c72ac0c0e2dc9ac2204143b92224fada931ef855b8559df87",
+        "BASE_IMAGE": "gcr.io/distroless/base-debian12",
         "BASE_TAG": "debug-arm64",
         "BASE_DIGEST": "sha256:140be6b39cd442f10cf8c3363b6e400fc5f0d29479e7c50b56c91783f08eda0e"
       },

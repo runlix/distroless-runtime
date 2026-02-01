@@ -1,6 +1,8 @@
-# Builder tag from VERSION.json builder.tag (e.g., "bookworm-slim")
+# Builder image and tag from docker-matrix.json
+ARG BUILDER_IMAGE=docker.io/library/debian
 ARG BUILDER_TAG=bookworm-slim
-# Base tag (variant-arch) from VERSION.json base.tag (e.g., "latest-arm64", "debug-arm64")
+# Base image and tag (variant-arch) from docker-matrix.json (e.g., "latest-arm64", "debug-arm64")
+ARG BASE_IMAGE=gcr.io/distroless/base-debian12
 ARG BASE_TAG=latest-arm64
 # Selected digests (build script will set based on target configuration)
 # Default to empty string - build script should always provide valid digests
@@ -9,9 +11,9 @@ ARG BUILDER_DIGEST=""
 ARG BASE_DIGEST=""
 
 # STAGE 1 — build base libs
-# Build script will pass BUILDER_TAG and BUILDER_DIGEST from VERSION.json
-# Format: debian:bookworm-slim@sha256:digest (when digest provided)
-FROM docker.io/library/debian:${BUILDER_TAG}@${BUILDER_DIGEST} AS runtime-deps
+# Build script will pass BUILDER_IMAGE, BUILDER_TAG and BUILDER_DIGEST from docker-matrix.json
+# Format: docker.io/library/debian:bookworm-slim@sha256:digest (when digest provided)
+FROM ${BUILDER_IMAGE}:${BUILDER_TAG}@${BUILDER_DIGEST} AS runtime-deps
 
 # Use BuildKit cache mounts to persist apt cache between builds
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
@@ -25,9 +27,9 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
  && rm -rf /var/lib/apt/lists/*
 
 # STAGE 2 — distroless final image
-# Build script will pass BASE_TAG (from VERSION.json base.tag) and BASE_DIGEST
+# Build script will pass BASE_IMAGE, BASE_TAG and BASE_DIGEST from docker-matrix.json
 # Format: gcr.io/distroless/base-debian12:latest-arm64@sha256:digest (when digest provided)
-FROM gcr.io/distroless/base-debian12:${BASE_TAG}@${BASE_DIGEST}
+FROM ${BASE_IMAGE}:${BASE_TAG}@${BASE_DIGEST}
 
 # Hardcoded for arm64 - no conditionals needed!
 ARG LIB_DIR=aarch64-linux-gnu
