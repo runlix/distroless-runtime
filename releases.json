@@ -3,11 +3,9 @@
     "version": null,
     "sha": "6a29080c9017e866e94f2872da220dc1605ec6ac",
     "short_sha": "6a29080",
-    "timestamp": "2026-02-01T17:49:07Z",
+    "timestamp": "2026-02-01T17:59:29Z",
     "manifests": [
       "debug",
-      "debug",
-      "stable",
       "stable"
     ]
   }
