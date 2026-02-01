@@ -10,7 +10,7 @@
       "dockerfiles": {
         "linux/amd64": "linux-amd64.Dockerfile"
       },
-      "tag_suffix": "",
+      "tag_suffix": "-stable",
       "build_args": {
         "BUILDER_TAG": "bookworm-slim",
         "BUILDER_DIGEST": "sha256:09c53e50b5110eb26e0932ab77934481ce9c0068069d4f28e3e7493e51323bfe",
@@ -29,7 +29,7 @@
       "dockerfiles": {
         "linux/arm64": "linux-arm64.Dockerfile"
       },
-      "tag_suffix": "",
+      "tag_suffix": "-stable",
       "build_args": {
         "BUILDER_TAG": "bookworm-slim",
         "BUILDER_DIGEST": "sha256:79abd3da4379967c72ac0c0e2dc9ac2204143b92224fada931ef855b8559df87",
