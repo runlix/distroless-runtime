@@ -1,9 +1,9 @@
 {
   "distroless-runtime": {
     "version": null,
-    "sha": "1dfae42af735a87c02968ccb4b15eadc946d0991",
-    "short_sha": "1dfae42",
-    "timestamp": "2026-02-02T07:23:34Z",
+    "sha": "ba9fc9c9bb942f45a67f0bf3ed15fd6ff3cb53e5",
+    "short_sha": "ba9fc9c",
+    "timestamp": "2026-02-03T08:31:35Z",
     "manifests": [
       "debug",
       "stable"
