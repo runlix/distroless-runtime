@@ -16,7 +16,7 @@
         "BUILDER_DIGEST": "sha256:6458e6ce2b6448e31bfdced4be7d8aa88d389e6694ab09f5a718a694abe147f4",
         "BASE_IMAGE": "gcr.io/distroless/base-debian12",
         "BASE_TAG": "latest-amd64",
-        "BASE_DIGEST": "sha256:d5f7dca58e3db53d1de502bd1a747ecb1110cf6b0773af129f951ee11e2e3ed4"
+        "BASE_DIGEST": "sha256:1f144c77a9ecaaa132fc3037b4417d9f9fd0b7a50101c696af5cb186876aa2a3"
       },
       "test_script": ""
     },
@@ -36,7 +36,7 @@
         "BUILDER_DIGEST": "sha256:1c5d4fd0caad88eb6cb62bcdbc2f580ef2523ab69e86abc2bd2a94703aac9f96",
         "BASE_IMAGE": "gcr.io/distroless/base-debian12",
         "BASE_TAG": "latest-arm64",
-        "BASE_DIGEST": "sha256:ba2aeab48a1dadbd47ac4ce37b7f6084043a8f59172f8b73a3ede3c3e1a71be4"
+        "BASE_DIGEST": "sha256:092d065d29d72957dc7a85519c3f911d6ad233fe6b53e7a9f42891e6464cc7d9"
       },
       "test_script": ""
     },
@@ -56,7 +56,7 @@
         "BUILDER_DIGEST": "sha256:6458e6ce2b6448e31bfdced4be7d8aa88d389e6694ab09f5a718a694abe147f4",
         "BASE_IMAGE": "gcr.io/distroless/base-debian12",
         "BASE_TAG": "debug-amd64",
-        "BASE_DIGEST": "sha256:390fbd1c6954d0499687c031097557bd0c3834df0a8f9ad76e5dd86ca8bc22f1"
+        "BASE_DIGEST": "sha256:89fa9ceff0554957466172516a5ea031d7485ce4795073a28b20fed941867ce4"
       },
       "test_script": ""
     },
@@ -76,7 +76,7 @@
         "BUILDER_DIGEST": "sha256:1c5d4fd0caad88eb6cb62bcdbc2f580ef2523ab69e86abc2bd2a94703aac9f96",
         "BASE_IMAGE": "gcr.io/distroless/base-debian12",
         "BASE_TAG": "debug-arm64",
-        "BASE_DIGEST": "sha256:140be6b39cd442f10cf8c3363b6e400fc5f0d29479e7c50b56c91783f08eda0e"
+        "BASE_DIGEST": "sha256:3f5179c381d59d732a01386aa14be810c17c1a42cdd49f8bb95b718dea71f2f3"
       },
       "test_script": ""
     }
