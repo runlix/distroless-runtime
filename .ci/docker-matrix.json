@@ -13,7 +13,7 @@
       "build_args": {
         "BUILDER_IMAGE": "docker.io/library/debian",
         "BUILDER_TAG": "bookworm-slim",
-        "BUILDER_DIGEST": "sha256:6458e6ce2b6448e31bfdced4be7d8aa88d389e6694ab09f5a718a694abe147f4",
+        "BUILDER_DIGEST": "sha256:74a21da88cf4b2e8fde34558376153c5cd80b00ca81da2e659387e76524edc73",
         "BASE_IMAGE": "gcr.io/distroless/base-debian12",
         "BASE_TAG": "latest-amd64",
         "BASE_DIGEST": "sha256:1f144c77a9ecaaa132fc3037b4417d9f9fd0b7a50101c696af5cb186876aa2a3"
@@ -33,7 +33,7 @@
       "build_args": {
         "BUILDER_IMAGE": "docker.io/library/debian",
         "BUILDER_TAG": "bookworm-slim",
-        "BUILDER_DIGEST": "sha256:1c5d4fd0caad88eb6cb62bcdbc2f580ef2523ab69e86abc2bd2a94703aac9f96",
+        "BUILDER_DIGEST": "sha256:210137e2083cc9cd391a5117ff97e158fb8e69b984063e585732aac86216d60e",
         "BASE_IMAGE": "gcr.io/distroless/base-debian12",
         "BASE_TAG": "latest-arm64",
         "BASE_DIGEST": "sha256:092d065d29d72957dc7a85519c3f911d6ad233fe6b53e7a9f42891e6464cc7d9"
@@ -53,7 +53,7 @@
       "build_args": {
         "BUILDER_IMAGE": "docker.io/library/debian",
         "BUILDER_TAG": "bookworm-slim",
-        "BUILDER_DIGEST": "sha256:6458e6ce2b6448e31bfdced4be7d8aa88d389e6694ab09f5a718a694abe147f4",
+        "BUILDER_DIGEST": "sha256:74a21da88cf4b2e8fde34558376153c5cd80b00ca81da2e659387e76524edc73",
         "BASE_IMAGE": "gcr.io/distroless/base-debian12",
         "BASE_TAG": "debug-amd64",
         "BASE_DIGEST": "sha256:89fa9ceff0554957466172516a5ea031d7485ce4795073a28b20fed941867ce4"
@@ -73,7 +73,7 @@
       "build_args": {
         "BUILDER_IMAGE": "docker.io/library/debian",
         "BUILDER_TAG": "bookworm-slim",
-        "BUILDER_DIGEST": "sha256:1c5d4fd0caad88eb6cb62bcdbc2f580ef2523ab69e86abc2bd2a94703aac9f96",
+        "BUILDER_DIGEST": "sha256:210137e2083cc9cd391a5117ff97e158fb8e69b984063e585732aac86216d60e",
         "BASE_IMAGE": "gcr.io/distroless/base-debian12",
         "BASE_TAG": "debug-arm64",
         "BASE_DIGEST": "sha256:3f5179c381d59d732a01386aa14be810c17c1a42cdd49f8bb95b718dea71f2f3"
