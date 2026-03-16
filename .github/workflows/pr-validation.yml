@@ -2,29 +2,80 @@ name: PR Validation
 
 on:
   pull_request:
+    branches:
+      - release
+      - side/ci-v2-release
     types: [opened, synchronize, reopened]
     paths:
-      - '.ci/docker-matrix.json'
-      - '*.Dockerfile'
-      - 'linux-*.Dockerfile'
+      - ".ci/config.json"
+      - ".ci/README.md"
+      - "linux-*.Dockerfile"
+      - ".github/workflows/pr-validation.yml"
+      - ".github/workflows/release.yml"
   workflow_dispatch:
-    inputs:
-      dry_run:
-        description: 'Skip image push (dry run)'
-        required: false
-        default: false
-        type: boolean
 
 permissions:
-  contents: write       # Required by reusable workflow (used in release mode only)
-  packages: write       # Push images to GHCR
-  pull-requests: write  # Comment on PR with build results
-  actions: read         # Query workflow artifacts
+  contents: read
+
+concurrency:
+  group: pr-validation-${{ github.repository }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  validate:
-    uses: runlix/build-workflow/.github/workflows/build-images-rebuild.yml@main
-    with:
-      pr_mode: true
-      dry_run: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || false }}
-    secrets: inherit
+  plan:
+    runs-on: ubuntu-24.04
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+      short_sha: ${{ steps.context.outputs.short_sha }}
+    steps:
+      - name: Checkout service repository
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+
+      - name: Checkout build workflow tooling
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          repository: runlix/build-workflow
+          ref: side/ci-v2-prototype
+          path: .tooling
+
+      - name: Resolve source context
+        id: context
+        run: echo "short_sha=$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
+
+      - name: Validate CI config
+        run: .tooling/prototypes/ci-v2/scripts/validate-config.sh .ci/config.json
+
+      - name: Plan build matrix
+        id: plan
+        run: |
+          short_sha="${{ steps.context.outputs.short_sha }}"
+          echo "matrix=$(.tooling/prototypes/ci-v2/scripts/plan-matrix.sh .ci/config.json "$short_sha")" >> "$GITHUB_OUTPUT"
+
+  build:
+    needs: plan
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include: ${{ fromJson(needs.plan.outputs.matrix) }}
+    steps:
+      - name: Checkout service repository
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+
+      - name: Checkout build workflow tooling
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          repository: runlix/build-workflow
+          ref: side/ci-v2-prototype
+          path: .tooling
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@4d04d5d9486b7bd6fa91e7baf45bbb4f8b9deedd # v4
+
+      - name: Build target
+        run: |
+          .tooling/prototypes/ci-v2/scripts/build-target.sh \
+            .ci/config.json \
+            "${{ matrix.name }}" \
+            pr \
+            "${{ needs.plan.outputs.short_sha }}"

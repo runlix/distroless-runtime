@@ -1,89 +1,89 @@
 # Distroless Runtime CI Configuration
 
-This directory contains configuration for the CI/CD pipeline.
+This branch uses the CI v2 prototype from `runlix/build-workflow@side/ci-v2-prototype`.
 
 ## Files
 
-### docker-matrix.json
+### config.json
 
-Defines the build matrix for multi-architecture Docker images. See the [schema documentation](https://github.com/runlix/build-workflow/blob/main/schema/docker-matrix-schema.json) for details.
+`.ci/config.json` is the release-branch source of truth.
 
-**Variants:**
-- `default-amd64` - Standard runtime base for AMD64 (minimal, no shell)
-- `default-arm64` - Standard runtime base for ARM64 (minimal, no shell)
-- `debug-amd64` - Debug runtime base for AMD64 (includes shell and debugging tools)
-- `debug-arm64` - Debug runtime base for ARM64 (includes shell and debugging tools)
+Each target is an explicit build unit:
 
-**Base Image:**
-This image wraps `gcr.io/distroless/base-debian12` and adds common runtime dependencies needed by application services:
-- libc6
-- libssl3
-- libicu72
-- ca-certificates
-- tzdata
+- `stable-amd64`
+- `stable-arm64`
+- `debug-amd64`
+- `debug-arm64`
 
-**No Application Version:**
-Unlike application services, this base image does not have a `version` field in docker-matrix.json because it tracks the upstream distroless base rather than a specific application release.
+Each target defines:
 
-### Smoke Tests
+- the final manifest tag (`stable` or `debug`)
+- one architecture (`amd64` or `arm64`)
+- one Dockerfile
+- one pinned upstream distroless base reference
+- repo-specific build args for the Debian builder image
 
-This base image intentionally has no smoke tests (`test_script` is empty). Base runtime images provide libraries and runtime environments but don't run standalone applications that can be tested.
+This base image intentionally omits `version`. It tracks pinned upstream distroless digests rather than an application release number.
 
-Application services that consume this base image (transmission, sonarr, home-assistant, etc.) have their own comprehensive smoke tests that indirectly validate the runtime base.
+### Smoke tests
 
-## Testing Changes
+This base image still has no smoke test. The runtime image provides libraries and filesystem content, not an application process with a stable health endpoint.
 
-Before committing changes to this configuration:
+That is a deliberate exception in this repo:
 
-1. **Validate JSON syntax**:
-   ```bash
-   jq . docker-matrix.json
-   ```
+- PR validation builds each target
+- release builds and publishes each target
+- downstream service images validate runtime behavior through their own smoke tests
 
-2. **Validate against schema**:
-   ```bash
-   curl -sL https://raw.githubusercontent.com/runlix/build-workflow/main/schema/docker-matrix-schema.json \
-     > /tmp/schema.json
-   ajv validate -s /tmp/schema.json -d docker-matrix.json
-   ```
+## CI flow
 
-3. **Build locally** (requires Docker):
-   ```bash
-   # Build for current architecture
-   docker build -f linux-amd64.Dockerfile \
-     --build-arg BUILDER_IMAGE=docker.io/library/debian \
-     --build-arg BUILDER_TAG=bookworm-slim \
-     --build-arg BUILDER_DIGEST=sha256:... \
-     --build-arg BASE_IMAGE=gcr.io/distroless/base-debian12 \
-     --build-arg BASE_TAG=latest-amd64 \
-     --build-arg BASE_DIGEST=sha256:... \
-     -t distroless-runtime:test .
-   ```
+### PR validation
 
-4. **Verify image contents**:
-   ```bash
-   # Use debug variant to inspect
-   docker run --rm -it ghcr.io/runlix/distroless-runtime:debug sh
-   ```
+`pr-validation.yml` now does only four things:
 
-## Workflow Integration
+1. checkout the service repository
+2. checkout the build-workflow v2 tooling
+3. validate `.ci/config.json`
+4. build each enabled target locally
 
-The build workflow automatically:
+### Release
 
-1. **On Pull Requests**: Builds all variants for validation
-2. **On Merges to Release Branch**: Rebuilds from release branch and pushes to registry
-3. **After Build**: Creates multi-arch manifests tagged as `stable` or `debug`
+`release.yml` now does only four things:
 
-Application services depend on this base image and reference it in their docker-matrix.json:
-```json
-"BASE_IMAGE": "ghcr.io/runlix/distroless-runtime",
-"BASE_TAG": "stable",
-"BASE_DIGEST": "sha256:..."
+1. validate `.ci/config.json`
+2. build and push one temporary image per target
+3. create the `stable` and `debug` manifests
+4. upload `release-metadata.json`
+
+The release workflow does not write to `main`. Metadata sync now belongs to `main`.
+
+## Main-branch metadata sync
+
+`main` owns:
+
+- `README.md`
+- `links.json`
+- `releases.json`
+- `renovate.json`
+- `.github/workflows/sync-release-metadata.yml`
+
+The `main` workflow consumes `release-metadata.json` from successful release runs and writes `releases.json`.
+
+## Local validation
+
+From a checkout of this branch:
+
+```bash
+jq empty .ci/config.json
 ```
 
-Renovate automatically updates the BASE_DIGEST when new distroless-runtime versions are published.
+With a checkout of `runlix/build-workflow@side/ci-v2-prototype` available:
 
-## Dependency Chain
+```bash
+/path/to/build-workflow/prototypes/ci-v2/scripts/validate-config.sh .ci/config.json
+```
+
+## Dependency chain
 
 ```
 gcr.io/distroless/base-debian12
@@ -92,5 +92,3 @@ ghcr.io/runlix/distroless-runtime
   ↓
 ghcr.io/runlix/{transmission,sonarr,sabnzbd,home-assistant,radarr}
 ```
-
-See [build-workflow documentation](https://github.com/runlix/build-workflow/tree/main/docs) for more details.
