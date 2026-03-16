@@ -70,8 +70,8 @@ Before committing changes to this configuration:
 
 The build workflow automatically:
 
-1. **On Pull Requests**: Builds all variants for validation
-2. **On Merges to Release Branch**: Rebuilds from release branch and pushes to registry
+1. **On Pull Requests**: Builds all variants from the merged PR ref for validation only
+2. **On Pushes to `release`**: Rebuilds from the release branch and pushes to the registry
 3. **After Build**: Creates multi-arch manifests tagged as `stable` or `debug`
 
 Application services depend on this base image and reference it in their docker-matrix.json:
