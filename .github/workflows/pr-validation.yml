@@ -2,30 +2,23 @@ name: PR Validation
 
 on:
   pull_request:
+    branches:
+      - release
     types: [opened, synchronize, reopened]
     paths:
-      - '.ci/docker-matrix.json'
-      - '*.Dockerfile'
-      - 'linux-*.Dockerfile'
-      - 'VERSION.json'
+      - ".ci/config.json"
+      - ".ci/README.md"
+      - "linux-*.Dockerfile"
+      - ".github/workflows/pr-validation.yml"
+      - ".github/workflows/release.yml"
   workflow_dispatch:
-    inputs:
-      dry_run:
-        description: 'Skip image push (dry run)'
-        required: false
-        default: false
-        type: boolean
 
 permissions:
-  contents: write       # Required by reusable workflow (used in release mode only)
-  packages: write       # Push images to GHCR
-  pull-requests: write  # Comment on PR with build results
-  actions: read         # Query workflow artifacts
+  contents: read
 
 jobs:
   validate:
-    uses: runlix/build-workflow/.github/workflows/build-images-rebuild.yml@main
+    name: validate
+    uses: runlix/build-workflow/.github/workflows/pr-validation-v2.yml@ci-v2-summary-preview-20260317
     with:
-      pr_mode: true
-      dry_run: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || false }}
-    secrets: inherit
+      config-path: .ci/config.json

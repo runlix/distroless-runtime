@@ -5,24 +5,19 @@ on:
     branches:
       - release
     paths:
-      - '.ci/docker-matrix.json'
-      - '*.Dockerfile'
-      - 'linux-*.Dockerfile'
-      - 'VERSION.json'
+      - ".ci/config.json"
+      - ".ci/README.md"
+      - "linux-*.Dockerfile"
+      - ".github/workflows/release.yml"
+  workflow_dispatch:
 
 permissions:
-  contents: write       # Update releases.json in main branch
-  packages: write       # Push images to GHCR, delete platform tags
-  pull-requests: write  # Required by reusable workflow (not used in release mode)
-  actions: read         # Query workflow artifacts and PR status
-
-concurrency:
-  group: release-${{ github.repository }}
-  cancel-in-progress: true
+  contents: read
+  packages: write
 
 jobs:
   release:
-    uses: runlix/build-workflow/.github/workflows/build-images-rebuild.yml@main
+    uses: runlix/build-workflow/.github/workflows/release-v2.yml@ci-v2-summary-preview-20260317
     with:
-      pr_mode: false
-    secrets: inherit
+      config-path: .ci/config.json
+      release-artifact-name: release-metadata
