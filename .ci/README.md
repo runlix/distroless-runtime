@@ -1,12 +1,10 @@
 # Distroless Runtime CI Configuration
 
-This branch uses CI v2 reusable workflows exported from `runlix/build-workflow`, pinned to commit `a21b790251bd366c83b559f33626b32acfe1343b`.
+This branch uses the self-contained CI v2 reusable workflows from `runlix/build-workflow`, pinned to commit `2e7c3cf52b52c0f88d5fe16b4c1e85d1162cc2e5`.
 
-## Files
+## Source of truth
 
-### config.json
-
-`.ci/config.json` is the active release-branch source of truth for the v2 workflows.
+`.ci/config.json` is the only active CI config for this branch.
 
 Each target is an explicit build unit:
 
@@ -15,57 +13,47 @@ Each target is an explicit build unit:
 - `debug-amd64`
 - `debug-arm64`
 
-Each target defines:
+Each target declares:
 
-- the final manifest tag (`stable` or `debug`)
-- one architecture (`amd64` or `arm64`)
+- the final manifest tag
+- one architecture
 - one Dockerfile
 - one pinned upstream distroless base reference
 - repo-specific build args for the Debian builder image
 
 This base image intentionally omits `version`. It tracks pinned upstream distroless digests rather than an application release number.
 
-### docker-matrix.json
+## Smoke tests
 
-`.ci/docker-matrix.json` is retained temporarily during the transition to CI v2.
+This base image still has no smoke test.
 
-It is kept for PR safety and rollback comfort while the new flow is being proven, but the v2 workflows do not read it. Until v2 is accepted, keep it aligned with `.ci/config.json`.
+That is deliberate for this repo:
 
-### Smoke tests
-
-This base image still has no smoke test. The runtime image provides libraries and filesystem content, not an application process with a stable health endpoint.
-
-That is a deliberate exception in this repo:
-
-- PR validation builds each target
-- release builds and publishes each target
+- PR validation builds each target locally
+- release builds, pushes, and publishes each target
 - downstream service images validate runtime behavior through their own smoke tests
 
 ## CI flow
 
-### PR validation
+`pr-validation.yml` is a thin trigger wrapper around the shared reusable workflow in `build-workflow`.
 
-`pr-validation.yml` is now a thin trigger wrapper around the shared reusable workflow in `build-workflow`.
-
-The shared workflow:
+The shared PR workflow:
 
 1. validates `.ci/config.json`
-2. checks that the legacy `.ci/docker-matrix.json` still parses cleanly during rollout
-3. renders the build matrix
-4. builds each enabled target locally
+2. renders the build matrix
+3. builds each enabled target locally
 
-### Release
+`release.yml` is a thin trigger wrapper around the shared reusable workflow in `build-workflow`.
 
-`release.yml` is now a thin trigger wrapper around the shared reusable workflow in `build-workflow`.
-
-The shared workflow:
+The shared release workflow:
 
 1. validates `.ci/config.json`
-2. builds and pushes one temporary image per target
-3. creates the `stable` and `debug` manifests
-4. uploads `release-metadata.json`
+2. builds each enabled target locally
+3. pushes one temporary image per target
+4. creates the `stable` and `debug` manifests
+5. uploads `release-metadata.json`
 
-The release workflow does not write to `main`. Metadata sync now belongs to `main`.
+The release workflow does not write to `main`. Metadata sync stays on `main`.
 
 ## Main-branch metadata sync
 
@@ -85,13 +73,14 @@ From a checkout of this branch:
 
 ```bash
 jq empty .ci/config.json
-jq empty .ci/docker-matrix.json
 ```
 
-With a checkout of `runlix/build-workflow` at commit `a21b790251bd366c83b559f33626b32acfe1343b` available:
+With a checkout of `runlix/build-workflow` at commit `2e7c3cf52b52c0f88d5fe16b4c1e85d1162cc2e5` available:
 
 ```bash
-/path/to/build-workflow/prototypes/ci-v2/scripts/validate-config.sh .ci/config.json
+ajv validate --spec=draft2020 \
+  -s /path/to/build-workflow/schema/ci-config-v2.schema.json \
+  -d .ci/config.json
 ```
 
 ## Dependency chain

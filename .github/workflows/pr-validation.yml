@@ -4,11 +4,9 @@ on:
   pull_request:
     branches:
       - release
-      - side/ci-v2-release
     types: [opened, synchronize, reopened]
     paths:
       - ".ci/config.json"
-      - ".ci/docker-matrix.json"
       - ".ci/README.md"
       - "linux-*.Dockerfile"
       - ".github/workflows/pr-validation.yml"
@@ -20,10 +18,6 @@ permissions:
 
 jobs:
   pr-validation:
-    # Keep tooling-ref equal to the SHA pinned in uses:.
-    uses: runlix/build-workflow/.github/workflows/pr-validation-v2.yml@a21b790251bd366c83b559f33626b32acfe1343b
+    uses: runlix/build-workflow/.github/workflows/pr-validation-v2.yml@2e7c3cf52b52c0f88d5fe16b4c1e85d1162cc2e5
     with:
-      tooling-ref: a21b790251bd366c83b559f33626b32acfe1343b
       config-path: .ci/config.json
-      legacy-matrix-path: .ci/docker-matrix.json
-      validate-legacy-matrix: true

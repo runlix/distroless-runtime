@@ -1,7 +1,7 @@
-# Builder image and tag from docker-matrix.json
+# Builder image and tag from .ci/config.json
 ARG BUILDER_IMAGE=docker.io/library/debian
 ARG BUILDER_TAG=bookworm-slim
-# Base image and tag (variant-arch) from docker-matrix.json (e.g., "latest-arm64", "debug-arm64")
+# Base image and tag from .ci/config.json (for example "latest-arm64" or "debug-arm64")
 ARG BASE_IMAGE=gcr.io/distroless/base-debian12
 ARG BASE_TAG=latest-arm64
 # Selected digests (build script will set based on target configuration)
@@ -11,7 +11,7 @@ ARG BUILDER_DIGEST=""
 ARG BASE_DIGEST=""
 
 # STAGE 1 — build base libs
-# Build script will pass BUILDER_IMAGE, BUILDER_TAG and BUILDER_DIGEST from docker-matrix.json
+# Build workflow passes BUILDER_IMAGE, BUILDER_TAG and BUILDER_DIGEST from .ci/config.json
 # Format: docker.io/library/debian:bookworm-slim@sha256:digest (when digest provided)
 FROM ${BUILDER_IMAGE}:${BUILDER_TAG}@${BUILDER_DIGEST} AS runtime-deps
 
@@ -27,7 +27,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
  && rm -rf /var/lib/apt/lists/*
 
 # STAGE 2 — distroless final image
-# Build script will pass BASE_IMAGE, BASE_TAG and BASE_DIGEST from docker-matrix.json
+# Build workflow passes BASE_IMAGE, BASE_TAG and BASE_DIGEST from .ci/config.json
 # Format: gcr.io/distroless/base-debian12:latest-arm64@sha256:digest (when digest provided)
 FROM ${BASE_IMAGE}:${BASE_TAG}@${BASE_DIGEST}
 
