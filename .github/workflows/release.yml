@@ -17,7 +17,7 @@ permissions:
 
 jobs:
   release:
-    uses: runlix/build-workflow/.github/workflows/release-v2.yml@2e7c3cf52b52c0f88d5fe16b4c1e85d1162cc2e5
+    uses: runlix/build-workflow/.github/workflows/release-v2.yml@refactor/ci-v2-self-contained
     with:
       config-path: .ci/config.json
       release-artifact-name: release-metadata
