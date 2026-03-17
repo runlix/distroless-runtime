@@ -19,6 +19,6 @@ permissions:
 jobs:
   validate:
     name: validate
-    uses: runlix/build-workflow/.github/workflows/pr-validation-v2.yml@ci-v2-summary-preview-20260317
+    uses: runlix/build-workflow/.github/workflows/pr-validation-v2.yml@987962fa73ce073035aee061d6b211a7d803275b
     with:
       config-path: .ci/config.json
