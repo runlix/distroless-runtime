@@ -16,108 +16,13 @@ permissions:
   contents: read
   packages: write
 
-concurrency:
-  group: release-${{ github.repository }}
-  cancel-in-progress: false
-
 jobs:
-  plan:
-    runs-on: ubuntu-24.04
-    outputs:
-      matrix: ${{ steps.plan.outputs.matrix }}
-      short_sha: ${{ steps.context.outputs.short_sha }}
-      source_sha: ${{ steps.context.outputs.source_sha }}
-    steps:
-      - name: Checkout service repository
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
-
-      - name: Resolve source context
-        id: context
-        run: |
-          echo "source_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
-          echo "short_sha=$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
-
-      - name: Validate CI config
-        uses: runlix/build-workflow/.github/actions/ci-v2/validate-config@423ef69f098142198df4d7493929c31bb021a178
-        with:
-          config-path: .ci/config.json
-
-      - name: Validate legacy matrix JSON
-        run: jq empty .ci/docker-matrix.json > /dev/null
-
-      - name: Plan build matrix
-        id: plan
-        uses: runlix/build-workflow/.github/actions/ci-v2/plan-matrix@423ef69f098142198df4d7493929c31bb021a178
-        with:
-          config-path: .ci/config.json
-          short-sha: ${{ steps.context.outputs.short_sha }}
-
-  build-and-push:
-    needs: plan
-    runs-on: ${{ matrix.runner }}
-    strategy:
-      fail-fast: false
-      matrix:
-        include: ${{ fromJson(needs.plan.outputs.matrix) }}
-    steps:
-      - name: Checkout service repository
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
-
-      - name: Log in to GHCR
-        uses: docker/login-action@b45d80f862d83dbcd57f89517bcf500b2ab88fb2 # v4
-        with:
-          registry: ghcr.io
-          username: ${{ github.repository_owner }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@4d04d5d9486b7bd6fa91e7baf45bbb4f8b9deedd # v4
-
-      - name: Build and push target
-        uses: runlix/build-workflow/.github/actions/ci-v2/build-target@423ef69f098142198df4d7493929c31bb021a178
-        with:
-          config-path: .ci/config.json
-          target-name: ${{ matrix.name }}
-          mode: release
-          short-sha: ${{ needs.plan.outputs.short_sha }}
-
-  publish:
-    needs:
-      - plan
-      - build-and-push
-    runs-on: ubuntu-24.04
-    steps:
-      - name: Checkout service repository
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
-
-      - name: Log in to GHCR
-        uses: docker/login-action@b45d80f862d83dbcd57f89517bcf500b2ab88fb2 # v4
-        with:
-          registry: ghcr.io
-          username: ${{ github.repository_owner }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@4d04d5d9486b7bd6fa91e7baf45bbb4f8b9deedd # v4
-
-      - name: Create manifests
-        uses: runlix/build-workflow/.github/actions/ci-v2/create-manifests@423ef69f098142198df4d7493929c31bb021a178
-        with:
-          config-path: .ci/config.json
-          short-sha: ${{ needs.plan.outputs.short_sha }}
-          output-file: manifests-created.txt
-
-      - name: Render release metadata
-        uses: runlix/build-workflow/.github/actions/ci-v2/render-release-metadata@423ef69f098142198df4d7493929c31bb021a178
-        with:
-          config-path: .ci/config.json
-          source-sha: ${{ needs.plan.outputs.source_sha }}
-          published-at: ${{ github.event.head_commit.timestamp }}
-          output-path: release-metadata.json
-
-      - name: Upload release metadata
-        uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7
-        with:
-          name: release-metadata
-          path: release-metadata.json
-          retention-days: 7
+  release:
+    # Keep tooling-ref equal to the SHA pinned in uses:.
+    uses: runlix/build-workflow/.github/workflows/release-v2.yml@83f522fecbdd77b7875e4e474ddbdc78d978ac3e
+    with:
+      tooling-ref: 83f522fecbdd77b7875e4e474ddbdc78d978ac3e
+      config-path: .ci/config.json
+      legacy-matrix-path: .ci/docker-matrix.json
+      validate-legacy-matrix: true
+      release-artifact-name: release-metadata

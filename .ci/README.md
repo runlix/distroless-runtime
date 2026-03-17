@@ -1,6 +1,6 @@
 # Distroless Runtime CI Configuration
 
-This branch uses CI v2 composite actions exported from `runlix/build-workflow`, pinned to merged `main` commit `423ef69f098142198df4d7493929c31bb021a178`.
+This branch uses CI v2 reusable workflows exported from `runlix/build-workflow`, pinned to commit `83f522fecbdd77b7875e4e474ddbdc78d978ac3e`.
 
 ## Files
 
@@ -45,21 +45,25 @@ That is a deliberate exception in this repo:
 
 ### PR validation
 
-`pr-validation.yml` now does only four things:
+`pr-validation.yml` is now a thin trigger wrapper around the shared reusable workflow in `build-workflow`.
 
-1. checkout the service repository
-2. validate `.ci/config.json`
-3. check that the legacy `.ci/docker-matrix.json` still parses cleanly during rollout
-4. build each enabled target locally
+The shared workflow:
+
+1. validates `.ci/config.json`
+2. checks that the legacy `.ci/docker-matrix.json` still parses cleanly during rollout
+3. renders the build matrix
+4. builds each enabled target locally
 
 ### Release
 
-`release.yml` now does only four things:
+`release.yml` is now a thin trigger wrapper around the shared reusable workflow in `build-workflow`.
 
-1. validate `.ci/config.json`
-2. build and push one temporary image per target
-3. create the `stable` and `debug` manifests
-4. upload `release-metadata.json`
+The shared workflow:
+
+1. validates `.ci/config.json`
+2. builds and pushes one temporary image per target
+3. creates the `stable` and `debug` manifests
+4. uploads `release-metadata.json`
 
 The release workflow does not write to `main`. Metadata sync now belongs to `main`.
 
@@ -84,7 +88,7 @@ jq empty .ci/config.json
 jq empty .ci/docker-matrix.json
 ```
 
-With a checkout of `runlix/build-workflow` at commit `423ef69f098142198df4d7493929c31bb021a178` available:
+With a checkout of `runlix/build-workflow` at commit `83f522fecbdd77b7875e4e474ddbdc78d978ac3e` available:
 
 ```bash
 /path/to/build-workflow/prototypes/ci-v2/scripts/validate-config.sh .ci/config.json

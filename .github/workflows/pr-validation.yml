@@ -18,57 +18,12 @@ on:
 permissions:
   contents: read
 
-concurrency:
-  group: pr-validation-${{ github.repository }}-${{ github.ref }}
-  cancel-in-progress: true
-
 jobs:
-  plan:
-    runs-on: ubuntu-24.04
-    outputs:
-      matrix: ${{ steps.plan.outputs.matrix }}
-      short_sha: ${{ steps.context.outputs.short_sha }}
-    steps:
-      - name: Checkout service repository
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
-
-      - name: Resolve source context
-        id: context
-        run: echo "short_sha=$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
-
-      - name: Validate CI config
-        uses: runlix/build-workflow/.github/actions/ci-v2/validate-config@423ef69f098142198df4d7493929c31bb021a178
-        with:
-          config-path: .ci/config.json
-
-      - name: Validate legacy matrix JSON
-        run: jq empty .ci/docker-matrix.json > /dev/null
-
-      - name: Plan build matrix
-        id: plan
-        uses: runlix/build-workflow/.github/actions/ci-v2/plan-matrix@423ef69f098142198df4d7493929c31bb021a178
-        with:
-          config-path: .ci/config.json
-          short-sha: ${{ steps.context.outputs.short_sha }}
-
-  build:
-    needs: plan
-    runs-on: ${{ matrix.runner }}
-    strategy:
-      fail-fast: false
-      matrix:
-        include: ${{ fromJson(needs.plan.outputs.matrix) }}
-    steps:
-      - name: Checkout service repository
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@4d04d5d9486b7bd6fa91e7baf45bbb4f8b9deedd # v4
-
-      - name: Build target
-        uses: runlix/build-workflow/.github/actions/ci-v2/build-target@423ef69f098142198df4d7493929c31bb021a178
-        with:
-          config-path: .ci/config.json
-          target-name: ${{ matrix.name }}
-          mode: pr
-          short-sha: ${{ needs.plan.outputs.short_sha }}
+  pr-validation:
+    # Keep tooling-ref equal to the SHA pinned in uses:.
+    uses: runlix/build-workflow/.github/workflows/pr-validation-v2.yml@83f522fecbdd77b7875e4e474ddbdc78d978ac3e
+    with:
+      tooling-ref: 83f522fecbdd77b7875e4e474ddbdc78d978ac3e
+      config-path: .ci/config.json
+      legacy-matrix-path: .ci/docker-matrix.json
+      validate-legacy-matrix: true
