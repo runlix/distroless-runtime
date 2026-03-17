@@ -18,6 +18,6 @@ permissions:
 
 jobs:
   pr-validation:
-    uses: runlix/build-workflow/.github/workflows/pr-validation-v2.yml@refactor/ci-v2-self-contained
+    uses: runlix/build-workflow/.github/workflows/pr-validation-v2.yml@ci-v2-self-contained-preview-20260317
     with:
       config-path: .ci/config.json
