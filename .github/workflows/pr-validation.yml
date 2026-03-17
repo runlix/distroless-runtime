@@ -8,6 +8,7 @@ on:
     types: [opened, synchronize, reopened]
     paths:
       - ".ci/config.json"
+      - ".ci/docker-matrix.json"
       - ".ci/README.md"
       - "linux-*.Dockerfile"
       - ".github/workflows/pr-validation.yml"

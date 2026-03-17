@@ -6,7 +6,7 @@ This branch uses the CI v2 prototype from `runlix/build-workflow@side/ci-v2-prot
 
 ### config.json
 
-`.ci/config.json` is the release-branch source of truth.
+`.ci/config.json` is the active release-branch source of truth for the v2 workflows.
 
 Each target is an explicit build unit:
 
@@ -24,6 +24,12 @@ Each target defines:
 - repo-specific build args for the Debian builder image
 
 This base image intentionally omits `version`. It tracks pinned upstream distroless digests rather than an application release number.
+
+### docker-matrix.json
+
+`.ci/docker-matrix.json` is retained temporarily during the transition to CI v2.
+
+It is kept for PR safety and rollback comfort while the new flow is being proven, but the v2 workflows do not read it. Until v2 is accepted, keep it aligned with `.ci/config.json`.
 
 ### Smoke tests
 
@@ -75,6 +81,7 @@ From a checkout of this branch:
 
 ```bash
 jq empty .ci/config.json
+jq empty .ci/docker-matrix.json
 ```
 
 With a checkout of `runlix/build-workflow@side/ci-v2-prototype` available:
