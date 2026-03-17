@@ -37,7 +37,7 @@ jobs:
         run: echo "short_sha=$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
 
       - name: Validate CI config
-        uses: runlix/build-workflow/.github/actions/ci-v2/validate-config@09d39170871f181037c3424239a5d26aa457a037
+        uses: runlix/build-workflow/.github/actions/ci-v2/validate-config@423ef69f098142198df4d7493929c31bb021a178
         with:
           config-path: .ci/config.json
 
@@ -46,7 +46,7 @@ jobs:
 
       - name: Plan build matrix
         id: plan
-        uses: runlix/build-workflow/.github/actions/ci-v2/plan-matrix@09d39170871f181037c3424239a5d26aa457a037
+        uses: runlix/build-workflow/.github/actions/ci-v2/plan-matrix@423ef69f098142198df4d7493929c31bb021a178
         with:
           config-path: .ci/config.json
           short-sha: ${{ steps.context.outputs.short_sha }}
@@ -66,7 +66,7 @@ jobs:
         uses: docker/setup-buildx-action@4d04d5d9486b7bd6fa91e7baf45bbb4f8b9deedd # v4
 
       - name: Build target
-        uses: runlix/build-workflow/.github/actions/ci-v2/build-target@09d39170871f181037c3424239a5d26aa457a037
+        uses: runlix/build-workflow/.github/actions/ci-v2/build-target@423ef69f098142198df4d7493929c31bb021a178
         with:
           config-path: .ci/config.json
           target-name: ${{ matrix.name }}
