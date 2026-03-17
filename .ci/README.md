@@ -1,8 +1,8 @@
 # Distroless Runtime CI Configuration
 
-This branch uses the self-contained CI v2 reusable workflows from `runlix/build-workflow` pinned to merged `main` commit `987962fa73ce073035aee061d6b211a7d803275b`.
+This branch uses the self-contained CI v2 reusable workflows from `runlix/build-workflow` pinned to preview tag `ci-v2-surface-cleanup-preview-20260317`.
 
-The canonical CI v2 schema on that branch is pinned in `.ci/config.json` to the same merged `build-workflow` commit.
+The canonical CI v2 schema in `.ci/config.json` is pinned to the same preview ref while the `build-workflow` branch is under review.
 
 ## Source of truth
 
@@ -68,7 +68,7 @@ The release workflow does not write to `main`. Metadata sync stays on `main`.
 - `renovate.json`
 - `.github/workflows/sync-release-metadata.yml`
 
-The `main` workflow consumes `release-metadata.json` from successful release runs and writes `releases.json`.
+The `main` workflow filters on `workflow_run.branches: [release]`, consumes `release-metadata.json` from successful release runs, and writes `releases.json`.
 
 ## Local validation
 
@@ -78,7 +78,7 @@ From a checkout of this branch:
 jq empty .ci/config.json
 ```
 
-With a checkout of `runlix/build-workflow` at commit `987962fa73ce073035aee061d6b211a7d803275b` available:
+With a checkout of `runlix/build-workflow` at ref `ci-v2-surface-cleanup-preview-20260317` available:
 
 ```bash
 ajv validate --spec=draft2020 \
