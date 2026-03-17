@@ -1,6 +1,6 @@
 # Distroless Runtime CI Configuration
 
-This branch uses the self-contained CI v2 reusable workflows from `runlix/build-workflow` via the temporary preview tag `ci-v2-self-contained-preview-20260317`.
+This branch uses the self-contained CI v2 reusable workflows from `runlix/build-workflow` via the temporary preview tag `ci-v2-summary-preview-20260317`.
 
 The canonical CI v2 schema on that branch is still pinned in `.ci/config.json` to commit `2e7c3cf52b52c0f88d5fe16b4c1e85d1162cc2e5`.
 
@@ -44,6 +44,7 @@ The shared PR workflow:
 1. validates `.ci/config.json`
 2. renders the build matrix
 3. builds each enabled target locally
+4. emits the final aggregate check `validate / summary`
 
 `release.yml` is a thin trigger wrapper around the shared reusable workflow in `build-workflow`.
 
