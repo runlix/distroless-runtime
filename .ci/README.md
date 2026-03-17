@@ -46,6 +46,8 @@ The shared PR workflow:
 3. builds each enabled target locally
 4. emits the final aggregate check `validate / summary`
 
+The wrapper intentionally triggers on `.ci/*.sh` so a future smoke-test script is treated as a build input.
+
 `release.yml` is a thin trigger wrapper around the shared reusable workflow in `build-workflow`.
 
 The shared release workflow:
