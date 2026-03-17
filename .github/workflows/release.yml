@@ -9,6 +9,7 @@ on:
       - ".ci/README.md"
       - "linux-*.Dockerfile"
       - ".github/workflows/release.yml"
+  workflow_dispatch:
 
 permissions:
   contents: read
