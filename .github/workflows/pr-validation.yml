@@ -21,9 +21,9 @@ permissions:
 jobs:
   pr-validation:
     # Keep tooling-ref equal to the SHA pinned in uses:.
-    uses: runlix/build-workflow/.github/workflows/pr-validation-v2.yml@83f522fecbdd77b7875e4e474ddbdc78d978ac3e
+    uses: runlix/build-workflow/.github/workflows/pr-validation-v2.yml@a21b790251bd366c83b559f33626b32acfe1343b
     with:
-      tooling-ref: 83f522fecbdd77b7875e4e474ddbdc78d978ac3e
+      tooling-ref: a21b790251bd366c83b559f33626b32acfe1343b
       config-path: .ci/config.json
       legacy-matrix-path: .ci/docker-matrix.json
       validate-legacy-matrix: true

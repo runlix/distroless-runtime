@@ -1,6 +1,6 @@
 # Distroless Runtime CI Configuration
 
-This branch uses CI v2 reusable workflows exported from `runlix/build-workflow`, pinned to commit `83f522fecbdd77b7875e4e474ddbdc78d978ac3e`.
+This branch uses CI v2 reusable workflows exported from `runlix/build-workflow`, pinned to commit `a21b790251bd366c83b559f33626b32acfe1343b`.
 
 ## Files
 
@@ -88,7 +88,7 @@ jq empty .ci/config.json
 jq empty .ci/docker-matrix.json
 ```
 
-With a checkout of `runlix/build-workflow` at commit `83f522fecbdd77b7875e4e474ddbdc78d978ac3e` available:
+With a checkout of `runlix/build-workflow` at commit `a21b790251bd366c83b559f33626b32acfe1343b` available:
 
 ```bash
 /path/to/build-workflow/prototypes/ci-v2/scripts/validate-config.sh .ci/config.json
