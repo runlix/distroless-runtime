@@ -47,7 +47,7 @@ The shared PR workflow:
 4. runs the target test when configured
 5. emits the final aggregate check `validate / summary`
 
-The wrapper intentionally triggers on `.ci/*.sh` so a future smoke-test script is treated as a build input.
+The wrapper intentionally triggers on `.ci/*.sh` and `.dockerignore` so shell build helpers and ignore-file changes are treated as build inputs.
 
 `release.yml` is a thin trigger wrapper around the shared reusable workflow in `build-workflow`.
 
