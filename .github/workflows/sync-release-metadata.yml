@@ -15,4 +15,6 @@ permissions:
 
 jobs:
   sync:
-    uses: runlix/build-workflow/.github/workflows/sync-release-metadata.yml@e07323d2e80025c65e2adb83771f13282e2ba0ae
+    uses: runlix/build-workflow/.github/workflows/sync-release-metadata.yml@86e3cbfc7b3a8093801f36bbfb2d7245bb50cb0f
+    with:
+      build-workflow-ref: 86e3cbfc7b3a8093801f36bbfb2d7245bb50cb0f
