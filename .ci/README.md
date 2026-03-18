@@ -44,7 +44,8 @@ The shared PR workflow:
 1. validates `.ci/config.json`
 2. renders the build matrix
 3. builds each enabled target locally
-4. emits the final aggregate check `validate / summary`
+4. runs the target test when configured
+5. emits the final aggregate check `validate / summary`
 
 The wrapper intentionally triggers on `.ci/*.sh` so a future smoke-test script is treated as a build input.
 
@@ -54,9 +55,10 @@ The shared release workflow:
 
 1. validates `.ci/config.json`
 2. builds each enabled target locally
-3. pushes one temporary image per target
-4. creates the `stable` and `debug` manifests
-5. uploads `release-metadata.json`
+3. runs the target test when configured
+4. pushes one temporary image per target
+5. creates the `stable` and `debug` manifests
+6. uploads `release-metadata.json` as artifact `release-metadata`
 
 The release workflow does not write to `main`. Metadata sync stays on `main`.
 
