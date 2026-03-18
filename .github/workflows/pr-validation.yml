@@ -20,4 +20,4 @@ permissions:
 jobs:
   validate:
     name: validate
-    uses: runlix/build-workflow/.github/workflows/pr-validation-v2.yml@ci-v2-surface-cleanup-preview-20260317
+    uses: runlix/build-workflow/.github/workflows/pr-validation-v2.yml@2b85050ee48a849e72e38eca7039ee9054d0f5d3

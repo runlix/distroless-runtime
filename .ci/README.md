@@ -1,8 +1,8 @@
 # Distroless Runtime CI Configuration
 
-This branch uses the self-contained CI v2 reusable workflows from `runlix/build-workflow` pinned to preview tag `ci-v2-surface-cleanup-preview-20260317`.
+This branch uses the self-contained CI v2 reusable workflows from `runlix/build-workflow` pinned to full commit SHA `2b85050ee48a849e72e38eca7039ee9054d0f5d3`.
 
-The canonical CI v2 schema in `.ci/config.json` is pinned to the same preview ref while the `build-workflow` branch is under review.
+The canonical CI v2 schema in `.ci/config.json` is pinned to the same full SHA.
 
 ## Source of truth
 
@@ -82,7 +82,7 @@ From a checkout of this branch:
 jq empty .ci/config.json
 ```
 
-With a checkout of `runlix/build-workflow` at ref `ci-v2-surface-cleanup-preview-20260317` available:
+With a checkout of `runlix/build-workflow` at commit `2b85050ee48a849e72e38eca7039ee9054d0f5d3` available:
 
 ```bash
 ajv validate --spec=draft2020 \
