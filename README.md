@@ -18,12 +18,17 @@ The `distroless-runtime` image serves as the base layer for all application imag
 ## Usage
 
 ```dockerfile
-FROM ghcr.io/runlix/distroless-runtime:release-latest
+FROM ghcr.io/runlix/distroless-runtime:stable
 ```
 
 ## Tags
 
-See [tags.json](tags.json) for available tags.
+Published tags are tracked in [releases.json](releases.json).
+
+Current long-lived tags:
+
+- `stable`
+- `debug`
 
 ## License
 
