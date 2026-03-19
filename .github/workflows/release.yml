@@ -18,4 +18,4 @@ permissions:
 
 jobs:
   release:
-    uses: runlix/build-workflow/.github/workflows/release-v2.yml@2b85050ee48a849e72e38eca7039ee9054d0f5d3
+    uses: runlix/build-workflow/.github/workflows/release.yml@539aeec8eca2dd0f942963b87d32c171487ff2f2
