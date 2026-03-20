@@ -1,6 +1,6 @@
 # Distroless Runtime CI Configuration
 
-This branch uses the clean v2 reusable workflows from `runlix/build-workflow` pinned to full commit SHA `d9330ebad6233b71595ced05367fc7773c07c087`.
+This branch uses the clean v2 reusable workflows from `runlix/build-workflow` pinned to full commit SHA `52d676ab3e20a3d661200d399fa367bf110ff968`.
 
 The canonical CI schema in `.ci/config.json` is pinned to the same full SHA.
 
