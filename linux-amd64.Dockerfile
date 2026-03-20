@@ -1,19 +1,7 @@
-# Builder image and tag from .ci/config.json
-ARG BUILDER_IMAGE=docker.io/library/debian
-ARG BUILDER_TAG=bookworm-slim
-# Base image and tag from .ci/config.json (for example "latest-amd64" or "debug-amd64")
-ARG BASE_IMAGE=gcr.io/distroless/base-debian12
-ARG BASE_TAG=latest-amd64
-# Selected digests (build script will set based on target configuration)
-# Default to empty string - build script should always provide valid digests
-# If empty, FROM will fail (which is desired to enforce digest pinning)
-ARG BUILDER_DIGEST=""
-ARG BASE_DIGEST=""
+ARG BUILDER_REF="docker.io/library/debian:bookworm-slim@sha256:6458e6ce2b6448e31bfdced4be7d8aa88d389e6694ab09f5a718a694abe147f4"
+ARG BASE_REF="gcr.io/distroless/base-debian12:latest-amd64@sha256:d5f7dca58e3db53d1de502bd1a747ecb1110cf6b0773af129f951ee11e2e3ed4"
 
-# STAGE 1 — build base libs
-# Build workflow passes BUILDER_IMAGE, BUILDER_TAG and BUILDER_DIGEST from .ci/config.json
-# Format: docker.io/library/debian:bookworm-slim@sha256:digest (when digest provided)
-FROM ${BUILDER_IMAGE}:${BUILDER_TAG}@${BUILDER_DIGEST} AS runtime-deps
+FROM ${BUILDER_REF} AS runtime-deps
 
 # Use BuildKit cache mounts to persist apt cache between builds
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
@@ -26,10 +14,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     tzdata \
  && rm -rf /var/lib/apt/lists/*
 
-# STAGE 2 — distroless final image
-# Build workflow passes BASE_IMAGE, BASE_TAG and BASE_DIGEST from .ci/config.json
-# Format: gcr.io/distroless/base-debian12:latest-amd64@sha256:digest (when digest provided)
-FROM ${BASE_IMAGE}:${BASE_TAG}@${BASE_DIGEST}
+FROM ${BASE_REF}
 
 # Hardcoded for amd64 - no conditionals needed!
 ARG LIB_DIR=x86_64-linux-gnu
