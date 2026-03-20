@@ -1,5 +1,5 @@
 {
-  "$schema": "https://raw.githubusercontent.com/runlix/build-workflow/e0d7cf691cb9ad02cc13aeae87cf09ca008c56bc/schema/ci-config.schema.json",
+  "$schema": "https://raw.githubusercontent.com/runlix/build-workflow/d9330ebad6233b71595ced05367fc7773c07c087/schema/ci-config.schema.json",
   "image": "ghcr.io/runlix/distroless-runtime",
   "targets": [
     {
