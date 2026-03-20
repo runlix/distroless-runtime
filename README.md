@@ -1,6 +1,6 @@
 # Distroless Runtime
 
-Base Docker image providing essential runtime libraries for applications. 
+Base Docker image providing essential runtime libraries for applications.
 This image extends Google's distroless base with required shared libraries and is used as the foundation for all Runlix application images.
 
 ## Purpose
@@ -18,12 +18,12 @@ The `distroless-runtime` image serves as the base layer for all application imag
 ## Usage
 
 ```dockerfile
-FROM ghcr.io/runlix/distroless-runtime:release-latest
+FROM ghcr.io/runlix/distroless-runtime:stable
 ```
 
 ## Tags
 
-See [tags.json](tags.json) for available tags.
+See [release.json](release.json) for the latest published tags and source revision.
 
 ## License
 
