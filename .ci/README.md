@@ -1,6 +1,6 @@
 # Distroless Runtime CI Configuration
 
-This branch uses the clean v2 reusable workflows from `runlix/build-workflow` pinned to full commit SHA `e0d7cf691cb9ad02cc13aeae87cf09ca008c56bc`.
+This branch uses the clean v2 reusable workflows from `runlix/build-workflow` pinned to full commit SHA `52d676ab3e20a3d661200d399fa367bf110ff968`.
 
 The canonical CI schema in `.ci/config.json` is pinned to the same full SHA.
 
@@ -27,13 +27,15 @@ This base image intentionally omits `version`. It tracks pinned upstream distrol
 
 ## Smoke tests
 
-This base image still has no smoke test.
+This base image now runs `.ci/smoke-test.sh` for every target.
 
-That is deliberate for this repo:
+Because distroless images do not include a shell and this repo publishes a runtime base rather than an application image, the smoke test stays intentionally small:
 
-- validate builds each target locally
-- release builds, pushes, and publishes each target
-- downstream service images validate runtime behavior through their own smoke tests
+- verify the image exists locally
+- verify the default `USER` and `WORKDIR`
+- execute the architecture-specific dynamic linker already present in the image
+
+That gives us a real `docker run` check without inventing an application command that this image does not own.
 
 ## CI flow
 
