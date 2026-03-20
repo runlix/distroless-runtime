@@ -1,0 +1,20 @@
+name: Sync Release Record
+
+on:
+  workflow_run:
+    workflows:
+      - Release
+    branches:
+      - release
+    types:
+      - completed
+
+permissions:
+  actions: read
+  contents: write
+
+jobs:
+  sync:
+    uses: runlix/build-workflow/.github/workflows/sync-release-record.yml@8db48d23f82cc75b5288349362acfb9b64bdae90
+    with:
+      tool-image: ghcr.io/runlix/build-workflow-tools:sha-8db48d23f82cc75b5288349362acfb9b64bdae90
