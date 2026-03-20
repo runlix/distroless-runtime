@@ -6,7 +6,7 @@ FROM ${BUILDER_REF} AS runtime-deps
 # Use BuildKit cache mounts to persist apt cache between builds
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     --mount=type=cache,target=/var/lib/apt/lists,sharing=locked \
-    apt-get update && apt-get install -y --no-install-recommends \
+    DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     libc6 \
     libssl3 \
     libicu72 \
