@@ -19,3 +19,4 @@ permissions:
 jobs:
   release:
     uses: runlix/build-workflow/.github/workflows/release.yml@539aeec8eca2dd0f942963b87d32c171487ff2f2
+    secrets: inherit
