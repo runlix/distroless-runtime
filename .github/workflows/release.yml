@@ -18,9 +18,9 @@ permissions:
 
 jobs:
   release:
-    uses: runlix/build-workflow/.github/workflows/release.yml@8db48d23f82cc75b5288349362acfb9b64bdae90
+    uses: runlix/build-workflow/.github/workflows/release.yml@79ac2b17f17ff48da372368b480c29c213d9b24d
     with:
-      tool-image: ghcr.io/runlix/build-workflow-tools:sha-8db48d23f82cc75b5288349362acfb9b64bdae90
+      tool-image: ghcr.io/runlix/build-workflow-tools@sha256:ab9d5a96364eff26b4a01af6c8c10d213a303371f39596873b4f3927e3d74082
     secrets:
       TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
       TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
