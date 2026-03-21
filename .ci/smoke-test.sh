@@ -13,6 +13,8 @@ architecture="$(docker inspect --format='{{.Architecture}}' "$IMAGE_TAG")"
 test "$user" = "65532:65532"
 test "$workdir" = "/app"
 
+# Distroless images do not ship a shell, so the smoke test uses the
+# architecture-specific dynamic loader as the minimal runtime probe.
 case "$architecture" in
   amd64)
     loader="/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2"
