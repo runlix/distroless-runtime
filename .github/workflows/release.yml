@@ -18,5 +18,9 @@ permissions:
 
 jobs:
   release:
-    uses: runlix/build-workflow/.github/workflows/release.yml@52d676ab3e20a3d661200d399fa367bf110ff968
-    secrets: inherit
+    uses: runlix/build-workflow/.github/workflows/release.yml@a65b382745fba78f2f01ef7657824a9467c0c55b
+    with:
+      tool-image: ghcr.io/runlix/build-workflow-tools@sha256:daf017419f6bffdb2de600bcfdbff359827b82d5ca05ef8828b21dd29fea1a2f
+    secrets:
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}

@@ -1,8 +1,9 @@
 # Distroless Runtime CI Configuration
 
-This branch uses the clean v2 reusable workflows from `runlix/build-workflow` pinned to full commit SHA `52d676ab3e20a3d661200d399fa367bf110ff968`.
+This branch uses the clean v2 reusable workflows from `runlix/build-workflow` pinned to full commit SHA `8db48d23f82cc75b5288349362acfb9b64bdae90`.
 
 The canonical CI schema in `.ci/config.json` is pinned to the same full SHA.
+The release and validate wrappers also pin `tool-image` to `ghcr.io/runlix/build-workflow-tools:sha-8db48d23f82cc75b5288349362acfb9b64bdae90`.
 
 ## Source of truth
 
@@ -59,6 +60,7 @@ The shared release workflow:
 4. pushes one temporary image per target
 5. creates the `stable` and `debug` manifests
 6. uploads `release-record.json` as artifact `release-record`
+7. sends an optional Telegram notification when `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` are mapped into the release wrapper
 
 The release workflow does not write to `main`. Record sync stays on `main`.
 
@@ -82,7 +84,7 @@ From a checkout of this branch:
 docker run --rm \
   -v "$PWD:/workspace" \
   -w /workspace \
-  ghcr.io/runlix/build-workflow-tools:ci \
+  ghcr.io/runlix/build-workflow-tools:sha-8db48d23f82cc75b5288349362acfb9b64bdae90 \
   validate-config .ci/config.json
 ```
 
