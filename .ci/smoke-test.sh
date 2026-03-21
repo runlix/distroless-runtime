@@ -41,4 +41,5 @@ fi
 # maintenance changes can exercise Release and follow-on metadata sync.
 # The probe intentionally stays loader-based so it works in shell-less images.
 # This comment exists only to trigger a proof Release run for sync validation.
+# This follow-up comment exists only to trigger a proof run after the Node 24 sync upgrade.
 rm -f /tmp/distroless-runtime-smoke.log
