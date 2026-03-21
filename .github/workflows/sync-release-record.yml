@@ -15,7 +15,7 @@ permissions:
 
 jobs:
   sync:
-    uses: runlix/build-workflow/.github/workflows/sync-release-record.yml@d9f1eee1e02079d684833e1770bdaa34f9c972ba
+    uses: runlix/build-workflow/.github/workflows/sync-release-record.yml@d9cf7a7f10b6f20fecf0689937f305daace40669
     with:
       tool-image: ghcr.io/runlix/build-workflow-tools@sha256:daf017419f6bffdb2de600bcfdbff359827b82d5ca05ef8828b21dd29fea1a2f
     secrets:
