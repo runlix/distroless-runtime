@@ -37,4 +37,6 @@ if ! grep -Eq 'Usage:|You have invoked|Shared library loader' /tmp/distroless-ru
   exit 1
 fi
 
+# Keep this file in the release-branch trigger path so smoke-test-only
+# maintenance changes can exercise Release and follow-on metadata sync.
 rm -f /tmp/distroless-runtime-smoke.log
