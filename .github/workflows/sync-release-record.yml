@@ -15,6 +15,9 @@ permissions:
 
 jobs:
   sync:
-    uses: runlix/build-workflow/.github/workflows/sync-release-record.yml@59e06ec2636ef9f4ae0d82be7bc212aed7d54c0a
+    uses: runlix/build-workflow/.github/workflows/sync-release-record.yml@d9f1eee1e02079d684833e1770bdaa34f9c972ba
     with:
       tool-image: ghcr.io/runlix/build-workflow-tools@sha256:daf017419f6bffdb2de600bcfdbff359827b82d5ca05ef8828b21dd29fea1a2f
+    secrets:
+      RUNLIX_APP_ID: ${{ secrets.RUNLIX_APP_ID }}
+      RUNLIX_PRIVATE_KEY: ${{ secrets.RUNLIX_PRIVATE_KEY }}
