@@ -39,4 +39,5 @@ fi
 
 # Keep this file in the release-branch trigger path so smoke-test-only
 # maintenance changes can exercise Release and follow-on metadata sync.
+# The probe intentionally stays loader-based so it works in shell-less images.
 rm -f /tmp/distroless-runtime-smoke.log
