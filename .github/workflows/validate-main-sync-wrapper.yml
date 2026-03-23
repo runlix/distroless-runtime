@@ -19,6 +19,6 @@ permissions:
 jobs:
   validate:
     name: validate
-    uses: runlix/build-workflow/.github/workflows/validate-sync-wrapper.yml@cb0c42e32966588c5e5b03cfea31d67e1749628a
+    uses: runlix/build-workflow/.github/workflows/validate-sync-wrapper.yml@d93b3a9c7e6fcb970e0f8f4ef5febca6ed16a6fc
     with:
       workflow-path: .github/workflows/sync-release-record.yml
