@@ -18,7 +18,7 @@ jobs:
     concurrency:
       group: sync-release-record-${{ github.repository }}
       cancel-in-progress: false
-    uses: runlix/build-workflow/.github/workflows/sync-release-record.yml@eb288b2da9962053234ab66fa4f041201887f72b
+    uses: runlix/build-workflow/.github/workflows/sync-release-record.yml@405a3b4c9fbeec8e009db1f607a5e478e0f765f1
     with:
       tool-image: ghcr.io/runlix/build-workflow-tools@sha256:77f0f999885f898c992cded0d76c3e5f12d74e12080be44b9ea316f6a5a94bdf
     secrets:

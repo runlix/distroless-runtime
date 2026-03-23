@@ -1,0 +1,24 @@
+name: Validate Main Sync Wrapper
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+      - reopened
+    paths:
+      - ".github/workflows/sync-release-record.yml"
+      - ".github/workflows/validate-main-sync-wrapper.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: validate
+    uses: runlix/build-workflow/.github/workflows/validate-sync-wrapper.yml@405a3b4c9fbeec8e009db1f607a5e478e0f765f1
+    with:
+      workflow-path: .github/workflows/sync-release-record.yml
