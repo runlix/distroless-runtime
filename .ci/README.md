@@ -76,6 +76,18 @@ The release workflow does not write to `main`. Record sync stays on `main`.
 
 The `main` workflow filters on `workflow_run.branches: [release]`, consumes `release-record.json` from successful release runs, and writes `release.json`.
 
+`main` branch protection must stay aligned with that PR-based sync path:
+
+- require the `validate-main-summary` status check
+- do not list `runlix-automation` in `bypass_pull_request_allowances`
+- keep repo-level auto-merge and merge commits enabled so the automation PR can merge normally
+
+Verify the live `main` rule with:
+
+```bash
+gh api repos/runlix/distroless-runtime/branches/main/protection
+```
+
 ## Local validation
 
 From a checkout of this branch:
