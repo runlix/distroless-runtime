@@ -61,7 +61,7 @@ jobs:
     name: validate-sync-wrapper
     needs: detect-changes
     if: ${{ needs.detect-changes.outputs.sync_wrapper == 'true' }}
-    uses: runlix/build-workflow/.github/workflows/validate-sync-wrapper.yml@d5f0114b2fa58a24189952875f489382a87f1480
+    uses: runlix/build-workflow/.github/workflows/validate-sync-wrapper.yml@2799165b34133b721bb1009e195b7033358bfa1c
     with:
       workflow-path: .github/workflows/sync-release-record.yml
 
@@ -69,7 +69,7 @@ jobs:
     name: validate-release-json
     needs: detect-changes
     if: ${{ needs.detect-changes.outputs.release_json == 'true' }}
-    uses: runlix/build-workflow/.github/workflows/validate-release-json.yml@d5f0114b2fa58a24189952875f489382a87f1480
+    uses: runlix/build-workflow/.github/workflows/validate-release-json.yml@2799165b34133b721bb1009e195b7033358bfa1c
     with:
       tool-image: ghcr.io/runlix/build-workflow-tools@sha256:77f0f999885f898c992cded0d76c3e5f12d74e12080be44b9ea316f6a5a94bdf
       release-json-path: release.json
