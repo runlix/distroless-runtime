@@ -20,6 +20,6 @@ permissions:
 jobs:
   validate:
     name: validate
-    uses: runlix/build-workflow/.github/workflows/validate.yml@48ed6345169126e45f4e8e293ab0e6804a8df909
+    uses: runlix/build-workflow/.github/workflows/validate.yml@fbf959f891272606f9d23ad05c0a88b0aae8cf45
     with:
       tool-image: ghcr.io/runlix/build-workflow-tools@sha256:77f0f999885f898c992cded0d76c3e5f12d74e12080be44b9ea316f6a5a94bdf
