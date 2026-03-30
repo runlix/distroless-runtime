@@ -1,0 +1,55 @@
+name: Publish Release
+
+on:
+  push:
+    branches:
+      - release
+    paths:
+      - ".ci/build.json"
+      - ".ci/*.sh"
+      - ".dockerignore"
+      - "linux-*.Dockerfile"
+      - ".github/workflows/publish-release.yml"
+  workflow_dispatch:
+
+permissions:
+  attestations: write
+  contents: read
+  id-token: write
+  packages: write
+
+jobs:
+  publish:
+    uses: runlix/build-workflow/.github/workflows/publish-release.yml@01bc855d3186aa4e2904b005fcbfe2ce5f94d70a
+
+  summarize-release:
+    name: summarize-release
+    needs:
+      - publish
+    if: ${{ needs.publish.outputs.release_json != '' }}
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Validate reusable workflow outputs
+        env:
+          IMAGE_NAME: ${{ needs.publish.outputs.image }}
+          MANIFESTS_JSON: ${{ needs.publish.outputs.manifests_json }}
+          RELEASE_JSON: ${{ needs.publish.outputs.release_json }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          [ "$IMAGE_NAME" = "ghcr.io/runlix/distroless-runtime-v2-canary" ]
+          printf '%s\n' "$RELEASE_JSON" > /tmp/release.json
+          jq -e '.image == "ghcr.io/runlix/distroless-runtime-v2-canary"' /tmp/release.json > /dev/null
+          jq -e '.manifests | length == 2' /tmp/release.json > /dev/null
+          jq -e 'length == 2' <<< "$MANIFESTS_JSON" > /dev/null
+
+          {
+            echo "## Release Outputs"
+            echo ""
+            echo "- Image: \`$IMAGE_NAME\`"
+            echo "- Published at: \`$(jq -r '.published_at' /tmp/release.json)\`"
+            echo "- Manifest count: \`$(jq '.manifests | length' /tmp/release.json)\`"
+          } >> "$GITHUB_STEP_SUMMARY"
