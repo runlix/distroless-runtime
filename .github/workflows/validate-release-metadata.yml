@@ -14,10 +14,11 @@ on:
 
 permissions:
   contents: read
+  id-token: write
 
 jobs:
   validate-release-metadata:
     name: validate-release-metadata
-    uses: runlix/build-workflow/.github/workflows/validate-release-metadata.yml@2e03098fb175a5d7493930e7961c99b6313e93a5
+    uses: runlix/build-workflow/.github/workflows/validate-release-metadata.yml@9b0699f7497afbf83bd310df5e9cfffe01e6682c
     with:
       release-json-path: release.json
