@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   publish:
-    uses: runlix/build-workflow/.github/workflows/publish-release.yml@2e03098fb175a5d7493930e7961c99b6313e93a5
+    uses: runlix/build-workflow/.github/workflows/publish-release.yml@9b0699f7497afbf83bd310df5e9cfffe01e6682c
 
   summarize-release:
     name: summarize-release
