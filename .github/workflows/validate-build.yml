@@ -24,4 +24,4 @@ permissions:
 jobs:
   validate:
     name: validate
-    uses: runlix/build-workflow/.github/workflows/validate-build.yml@9b0699f7497afbf83bd310df5e9cfffe01e6682c
+    uses: runlix/build-workflow/.github/workflows/validate-build.yml@23bc20cf2238731861310f825c4577f273a617c2
