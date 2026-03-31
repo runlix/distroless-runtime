@@ -10,6 +10,7 @@ on:
       - reopened
     paths:
       - "release.json"
+      - ".github/workflows/validate-release-metadata.yml"
   workflow_dispatch:
 
 permissions:
@@ -19,6 +20,6 @@ permissions:
 jobs:
   validate-release-metadata:
     name: validate-release-metadata
-    uses: runlix/build-workflow/.github/workflows/validate-release-metadata.yml@d1c63a112d2839aa57f6b83f4d2f4adf7be9be1e
+    uses: runlix/build-workflow/.github/workflows/validate-release-metadata.yml@9f257a5ebb3ebef704e03f62708b4e890b92c61b
     with:
       release-json-path: release.json
