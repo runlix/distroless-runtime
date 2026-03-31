@@ -20,9 +20,9 @@ permissions:
 
 jobs:
   publish:
-    uses: runlix/build-workflow/.github/workflows/publish-release.yml@1ddffb118e7ec5488a9ceca65a803b0432b0676d
+    uses: runlix/build-workflow/.github/workflows/publish-release.yml@1040b50ffe86b619092d95b3b638b4b663a15189
     with:
-      tool-image: ghcr.io/runlix/build-workflow-tools:sha-1ddffb118e7ec5488a9ceca65a803b0432b0676d
+      tool-image: ghcr.io/runlix/build-workflow-tools:sha-1040b50ffe86b619092d95b3b638b4b663a15189
     secrets:
       RUNLIX_APP_ID: ${{ secrets.RUNLIX_APP_ID }}
       RUNLIX_PRIVATE_KEY: ${{ secrets.RUNLIX_PRIVATE_KEY }}
