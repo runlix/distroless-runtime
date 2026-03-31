@@ -1,6 +1,15 @@
-name: Release
+name: Publish Release
 
 on:
+  push:
+    branches:
+      - release
+    paths:
+      - ".ci/build.json"
+      - ".ci/*.sh"
+      - ".dockerignore"
+      - "linux-*.Dockerfile"
+      - ".github/workflows/publish-release.yml"
   workflow_dispatch:
 
 permissions:
@@ -36,3 +45,11 @@ jobs:
           jq -e '.image == "ghcr.io/runlix/distroless-runtime-v2-canary"' /tmp/release.json > /dev/null
           jq -e '.manifests | length == 2' /tmp/release.json > /dev/null
           jq -e 'length == 2' <<< "$MANIFESTS_JSON" > /dev/null
+
+          {
+            echo "## Release Outputs"
+            echo ""
+            echo "- Image: \`$IMAGE_NAME\`"
+            echo "- Published at: \`$(jq -r '.published_at' /tmp/release.json)\`"
+            echo "- Manifest count: \`$(jq '.manifests | length' /tmp/release.json)\`"
+          } >> "$GITHUB_STEP_SUMMARY"
