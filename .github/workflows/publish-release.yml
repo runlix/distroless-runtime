@@ -20,7 +20,10 @@ permissions:
 
 jobs:
   publish:
-    uses: runlix/build-workflow/.github/workflows/publish-release.yml@d1c63a112d2839aa57f6b83f4d2f4adf7be9be1e
+    uses: runlix/build-workflow/.github/workflows/publish-release.yml@99b35a4d800b0482f5e098743c927f505690d2d8
+    secrets:
+      RUNLIX_APP_ID: ${{ secrets.RUNLIX_APP_ID }}
+      RUNLIX_PRIVATE_KEY: ${{ secrets.RUNLIX_PRIVATE_KEY }}
 
   summarize-release:
     name: summarize-release
@@ -36,6 +39,7 @@ jobs:
           IMAGE_NAME: ${{ needs.publish.outputs.image }}
           MANIFESTS_JSON: ${{ needs.publish.outputs.manifests_json }}
           RELEASE_JSON: ${{ needs.publish.outputs.release_json }}
+          SYNC_PR_URL: ${{ needs.publish.outputs.sync_pr_url }}
         shell: bash
         run: |
           set -euo pipefail
@@ -52,4 +56,9 @@ jobs:
             echo "- Image: \`$IMAGE_NAME\`"
             echo "- Published at: \`$(jq -r '.published_at' /tmp/release.json)\`"
             echo "- Manifest count: \`$(jq '.manifests | length' /tmp/release.json)\`"
+            if [ -n "$SYNC_PR_URL" ]; then
+              echo "- Sync PR: $SYNC_PR_URL"
+            else
+              echo "- Sync PR: not created"
+            fi
           } >> "$GITHUB_STEP_SUMMARY"
