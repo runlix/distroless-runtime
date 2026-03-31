@@ -1,0 +1,24 @@
+name: Validate Release Metadata
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+      - reopened
+    paths:
+      - "release.json"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  validate-release-metadata:
+    name: validate-release-metadata
+    uses: runlix/build-workflow/.github/workflows/validate-release-metadata.yml@d1c63a112d2839aa57f6b83f4d2f4adf7be9be1e
+    with:
+      release-json-path: release.json
