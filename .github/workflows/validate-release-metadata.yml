@@ -15,11 +15,11 @@ on:
 
 permissions:
   contents: read
-  id-token: write
 
 jobs:
   validate-release-metadata:
     name: validate-release-metadata
-    uses: runlix/build-workflow/.github/workflows/validate-release-metadata.yml@99b35a4d800b0482f5e098743c927f505690d2d8
+    uses: runlix/build-workflow/.github/workflows/validate-release-metadata.yml@372e724c2cd4a0104243689b76fe6eddd067f4a5
     with:
       release-json-path: release.json
+      tool-image: ghcr.io/runlix/build-workflow-tools:sha-372e724c2cd4a0104243689b76fe6eddd067f4a5
