@@ -20,6 +20,6 @@ permissions:
 jobs:
   validate-release-metadata:
     name: validate-release-metadata
-    uses: runlix/build-workflow/.github/workflows/validate-release-metadata.yml@9f257a5ebb3ebef704e03f62708b4e890b92c61b
+    uses: runlix/build-workflow/.github/workflows/validate-release-metadata.yml@99b35a4d800b0482f5e098743c927f505690d2d8
     with:
       release-json-path: release.json
