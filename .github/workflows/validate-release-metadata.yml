@@ -19,7 +19,7 @@ permissions:
 jobs:
   validate-release-metadata:
     name: validate-release-metadata
-    uses: runlix/build-workflow/.github/workflows/validate-release-metadata.yml@1ddffb118e7ec5488a9ceca65a803b0432b0676d
+    uses: runlix/build-workflow/.github/workflows/validate-release-metadata.yml@d6951b763c17bb92b12821acbf4ccc56e2f242ab
     with:
       release-json-path: release.json
-      tool-image: ghcr.io/runlix/build-workflow-tools:sha-1ddffb118e7ec5488a9ceca65a803b0432b0676d
+      tool-image: ghcr.io/runlix/build-workflow-tools:sha-d6951b763c17bb92b12821acbf4ccc56e2f242ab
