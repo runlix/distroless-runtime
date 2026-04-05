@@ -20,7 +20,7 @@ permissions:
 
 jobs:
   publish:
-    uses: runlix/build-workflow/.github/workflows/publish-release.yml@2ef0415ea13f8913639851fd68957beec8abb635
+    uses: runlix/build-workflow/.github/workflows/publish-release.yml@4db4d106a12f2a72841e3768c4ef31b71d2bde28
     with:
       tool-image: ghcr.io/runlix/build-workflow-tools:sha-2ef0415ea13f8913639851fd68957beec8abb635
     secrets:
