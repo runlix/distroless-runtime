@@ -1,5 +1,5 @@
 {
-  "$schema": "https://raw.githubusercontent.com/runlix/build-workflow/0c678540f996a8dfe57235045510980ef9700c77/schema/build-config.schema.json",
+  "$schema": "https://raw.githubusercontent.com/runlix/build-workflow/2ef0415ea13f8913639851fd68957beec8abb635/schema/build-config.schema.json",
   "image": "ghcr.io/runlix/distroless-runtime-v2-canary",
   "defaults": {
     "test": ".ci/smoke-test.sh"
