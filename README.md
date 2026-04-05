@@ -1,29 +1,54 @@
 # Distroless Runtime
 
-Base Docker image providing essential runtime libraries for applications. 
-This image extends Google's distroless base with required shared libraries and is used as the foundation for all Runlix application images.
+`distroless-runtime` publishes the shared runtime base used by Runlix application images.
 
-## Purpose
+The current published image name is:
 
-The `distroless-runtime` image serves as the base layer for all application images in the Runlix ecosystem. It provides a minimal, secure runtime environment with only the essential libraries needed for applications to run.
-
-## What's Included
-
-- libc6 - Standard C library (required for binaries)
-- libssl3 - SSL/TLS library (required for HTTPS operations)
-- libicu72 - International Components for Unicode (required for globalization)
-- ca-certificates - Certificate authority certificates (for HTTPS/TLS support)
-- tzdata - Timezone data
-
-## Usage
-
-```dockerfile
-FROM ghcr.io/runlix/distroless-runtime:stable
+```text
+ghcr.io/runlix/distroless-runtime-v2-canary
 ```
 
-## Tags
+Use the stable manifest tag from the published image:
 
-See [release.json](release.json) for the latest published tags and source revision.
+```dockerfile
+FROM ghcr.io/runlix/distroless-runtime-v2-canary:stable
+```
+
+The authoritative published tags, digests, and source revision live in [release.json](release.json).
+
+## What’s Included
+
+- `libc6`
+- `libssl3`
+- `libicu72`
+- `ca-certificates`
+- `tzdata`
+
+These libraries are copied into a distroless base so downstream images get a minimal runtime layer with the shared dependencies they need.
+
+## Branch Layout
+
+`main` owns metadata and automation config:
+
+- `README.md`
+- `links.json`
+- `release.json`
+- `renovate.json`
+- `.github/workflows/validate-release-metadata.yml`
+
+`release` owns build and publish inputs:
+
+- `.ci/build.json`
+- `.ci/smoke-test.sh`
+- `linux-*.Dockerfile`
+- `.github/workflows/validate-build.yml`
+- `.github/workflows/publish-release.yml`
+
+## Release Flow
+
+Changes merge to `release`, where `Publish Release` builds the `stable` and `debug` multi-arch manifests, attests them, optionally sends Telegram, and opens the sync PR back to `main`.
+
+`main` validates metadata and config-only changes with `Validate Release Metadata`.
 
 ## License
 
