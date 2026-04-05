@@ -20,12 +20,14 @@ permissions:
 
 jobs:
   publish:
-    uses: runlix/build-workflow/.github/workflows/publish-release.yml@0c678540f996a8dfe57235045510980ef9700c77
+    uses: runlix/build-workflow/.github/workflows/publish-release.yml@2ef0415ea13f8913639851fd68957beec8abb635
     with:
-      tool-image: ghcr.io/runlix/build-workflow-tools:sha-0c678540f996a8dfe57235045510980ef9700c77
+      tool-image: ghcr.io/runlix/build-workflow-tools:sha-2ef0415ea13f8913639851fd68957beec8abb635
     secrets:
       RUNLIX_APP_ID: ${{ secrets.RUNLIX_APP_ID }}
       RUNLIX_PRIVATE_KEY: ${{ secrets.RUNLIX_PRIVATE_KEY }}
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
 
   summarize-release:
     name: summarize-release
