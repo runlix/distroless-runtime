@@ -9,6 +9,8 @@ on:
       - synchronize
       - reopened
     paths:
+      - "README.md"
+      - ".ci/README.md"
       - ".ci/build.json"
       - ".ci/*.sh"
       - ".dockerignore"
