@@ -13,7 +13,6 @@ build-local.sh
 .github
 
 # Metadata files
-tags.json
 links.json
 renovate.json
 
@@ -26,4 +25,3 @@ renovate.json
 # OS files
 .DS_Store
 Thumbs.db
-
