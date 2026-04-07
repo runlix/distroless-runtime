@@ -12,7 +12,7 @@
       "dockerfile": "linux-amd64.Dockerfile",
       "build_args": {
         "BASE_REF": "gcr.io/distroless/base-debian12:latest-amd64@sha256:1f144c77a9ecaaa132fc3037b4417d9f9fd0b7a50101c696af5cb186876aa2a3",
-        "BUILDER_REF": "docker.io/library/debian:bookworm-slim@sha256:8af0e5095f9964007f5ebd11191dfe52dcb51bf3afa2c07f055fc5451b78ba0e"
+        "BUILDER_REF": "docker.io/library/debian:bookworm-slim@sha256:13cb01d584d2c23f475c088c168a48f9a08f033a10460572fbfd10912ec5ba7c"
       }
     },
     {
@@ -22,7 +22,7 @@
       "dockerfile": "linux-arm64.Dockerfile",
       "build_args": {
         "BASE_REF": "gcr.io/distroless/base-debian12:latest-arm64@sha256:092d065d29d72957dc7a85519c3f911d6ad233fe6b53e7a9f42891e6464cc7d9",
-        "BUILDER_REF": "docker.io/library/debian:bookworm-slim@sha256:ee5473f786ff8a4e03409277c276b459b29afa55a84268bef55342c4f705b7ad"
+        "BUILDER_REF": "docker.io/library/debian:bookworm-slim@sha256:0d49f9bc3af362aa0921b14b2f5c612a902ab6f7c2cac8d7026ade96fd0b9f6c"
       }
     },
     {
@@ -32,7 +32,7 @@
       "dockerfile": "linux-amd64.Dockerfile",
       "build_args": {
         "BASE_REF": "gcr.io/distroless/base-debian12:debug-amd64@sha256:89fa9ceff0554957466172516a5ea031d7485ce4795073a28b20fed941867ce4",
-        "BUILDER_REF": "docker.io/library/debian:bookworm-slim@sha256:8af0e5095f9964007f5ebd11191dfe52dcb51bf3afa2c07f055fc5451b78ba0e"
+        "BUILDER_REF": "docker.io/library/debian:bookworm-slim@sha256:13cb01d584d2c23f475c088c168a48f9a08f033a10460572fbfd10912ec5ba7c"
       }
     },
     {
@@ -42,7 +42,7 @@
       "dockerfile": "linux-arm64.Dockerfile",
       "build_args": {
         "BASE_REF": "gcr.io/distroless/base-debian12:debug-arm64@sha256:3f5179c381d59d732a01386aa14be810c17c1a42cdd49f8bb95b718dea71f2f3",
-        "BUILDER_REF": "docker.io/library/debian:bookworm-slim@sha256:ee5473f786ff8a4e03409277c276b459b29afa55a84268bef55342c4f705b7ad"
+        "BUILDER_REF": "docker.io/library/debian:bookworm-slim@sha256:0d49f9bc3af362aa0921b14b2f5c612a902ab6f7c2cac8d7026ade96fd0b9f6c"
       }
     }
   ]
