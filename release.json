@@ -1,13 +1,13 @@
 {
   "image": "ghcr.io/runlix/distroless-runtime-v2-canary",
   "version": null,
-  "sha": "d9e10836368c4a6052a1f2dcbdefd86e121f653f",
-  "short_sha": "d9e1083",
-  "published_at": "2026-05-18T01:57:04Z",
+  "sha": "47733b3c51c00d20fcb8b31fd8690687d9c0139d",
+  "short_sha": "47733b3",
+  "published_at": "2026-05-20T01:14:46Z",
   "manifests": [
     {
       "tag": "debug",
-      "digest": "sha256:094fac5a89e8534908389fb61987a9a240a013c3aef505016218fc4366a3626a",
+      "digest": "sha256:66dcf0c3df89aef5744374e9c5540708a6d53b0aa6566fd4306d77235d14326f",
       "platforms": [
         "linux/amd64",
         "linux/arm64"
@@ -15,7 +15,7 @@
     },
     {
       "tag": "stable",
-      "digest": "sha256:111187cf8b6644f9779a9b654dce1d33bc194a1a8f5434b583d1c036420a28fa",
+      "digest": "sha256:7b02520205fe4ba31191c32dfff3ff38cba0990b6f1f6c95e189d58b82522240",
       "platforms": [
         "linux/amd64",
         "linux/arm64"
