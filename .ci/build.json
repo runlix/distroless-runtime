@@ -12,7 +12,7 @@
       "dockerfile": "linux-amd64.Dockerfile",
       "build_args": {
         "BASE_REF": "gcr.io/distroless/base-debian12:latest-amd64@sha256:ca3f629c350fd1cb653caee7c5aed8967be4e43d9577fbb1cb4ed66c260e224e",
-        "BUILDER_REF": "docker.io/library/debian:bookworm-slim@sha256:35ae959f6e83ffb465e7614d27b4fddd28288caa551fbca2798367567cce80d3"
+        "BUILDER_REF": "docker.io/library/debian:bookworm-slim@sha256:1def178129dfb5f24db43afbf2fcac04530012e3264ba4ff81c71184e17a9ee4"
       }
     },
     {
@@ -22,7 +22,7 @@
       "dockerfile": "linux-arm64.Dockerfile",
       "build_args": {
         "BASE_REF": "gcr.io/distroless/base-debian12:latest-arm64@sha256:8038930101c61ebca513d46d5ccb85c29b4c792026bed0c1c221196d98838ea5",
-        "BUILDER_REF": "docker.io/library/debian:bookworm-slim@sha256:1663827ae94a92b1f374b5daf5fe2bf55303e7e7c61b84ef9663e654224a5857"
+        "BUILDER_REF": "docker.io/library/debian:bookworm-slim@sha256:675b032d19e294c9eb2525b24ee63e6dc718854a481c6fd6f5e0aefcaf8208a1"
       }
     },
     {
@@ -32,7 +32,7 @@
       "dockerfile": "linux-amd64.Dockerfile",
       "build_args": {
         "BASE_REF": "gcr.io/distroless/base-debian12:debug-amd64@sha256:8c86b266b87ffe5e7e301f2ad482216436978945680772f3d47cda557e23d9c6",
-        "BUILDER_REF": "docker.io/library/debian:bookworm-slim@sha256:35ae959f6e83ffb465e7614d27b4fddd28288caa551fbca2798367567cce80d3"
+        "BUILDER_REF": "docker.io/library/debian:bookworm-slim@sha256:1def178129dfb5f24db43afbf2fcac04530012e3264ba4ff81c71184e17a9ee4"
       }
     },
     {
@@ -42,7 +42,7 @@
       "dockerfile": "linux-arm64.Dockerfile",
       "build_args": {
         "BASE_REF": "gcr.io/distroless/base-debian12:debug-arm64@sha256:f45b1fc5a4aa863a3402b53652b443189e175beaec724592721dcf8f11c1f3a1",
-        "BUILDER_REF": "docker.io/library/debian:bookworm-slim@sha256:1663827ae94a92b1f374b5daf5fe2bf55303e7e7c61b84ef9663e654224a5857"
+        "BUILDER_REF": "docker.io/library/debian:bookworm-slim@sha256:675b032d19e294c9eb2525b24ee63e6dc718854a481c6fd6f5e0aefcaf8208a1"
       }
     }
   ]
