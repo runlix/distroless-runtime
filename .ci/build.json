@@ -12,7 +12,7 @@
       "dockerfile": "linux-amd64.Dockerfile",
       "build_args": {
         "BASE_REF": "gcr.io/distroless/base-debian12:latest-amd64@sha256:a15bf71c6eaf64a0c40912a84ac2e452304ec7e8a33121f6c7135502c6a181df",
-        "BUILDER_REF": "docker.io/library/debian:bookworm-slim@sha256:1def178129dfb5f24db43afbf2fcac04530012e3264ba4ff81c71184e17a9ee4"
+        "BUILDER_REF": "docker.io/library/debian:bookworm-slim@sha256:63a496b5d3b99214b39f5ed70eb71a61e590a77979c79cbee4faf991f8c0783e"
       }
     },
     {
@@ -22,7 +22,7 @@
       "dockerfile": "linux-arm64.Dockerfile",
       "build_args": {
         "BASE_REF": "gcr.io/distroless/base-debian12:latest-arm64@sha256:33dd7fe3a9579f953d231abe5e8d6cedcc66a377c08a821d754b79cf2714356a",
-        "BUILDER_REF": "docker.io/library/debian:bookworm-slim@sha256:675b032d19e294c9eb2525b24ee63e6dc718854a481c6fd6f5e0aefcaf8208a1"
+        "BUILDER_REF": "docker.io/library/debian:bookworm-slim@sha256:9b67294679b30e5d6ab257b40594feeb4a4b81f7fcf4131f4decf0d6a212a9b0"
       }
     },
     {
@@ -32,7 +32,7 @@
       "dockerfile": "linux-amd64.Dockerfile",
       "build_args": {
         "BASE_REF": "gcr.io/distroless/base-debian12:debug-amd64@sha256:9b7164a98d62d5501734380311070099ca621a75e80b74175e857be712d98989",
-        "BUILDER_REF": "docker.io/library/debian:bookworm-slim@sha256:1def178129dfb5f24db43afbf2fcac04530012e3264ba4ff81c71184e17a9ee4"
+        "BUILDER_REF": "docker.io/library/debian:bookworm-slim@sha256:63a496b5d3b99214b39f5ed70eb71a61e590a77979c79cbee4faf991f8c0783e"
       }
     },
     {
@@ -42,7 +42,7 @@
       "dockerfile": "linux-arm64.Dockerfile",
       "build_args": {
         "BASE_REF": "gcr.io/distroless/base-debian12:debug-arm64@sha256:03f88ebe9bc891e10b39fc1bf2e1ee7acb8361781c2bc1bc91c3be93e6d6731a",
-        "BUILDER_REF": "docker.io/library/debian:bookworm-slim@sha256:675b032d19e294c9eb2525b24ee63e6dc718854a481c6fd6f5e0aefcaf8208a1"
+        "BUILDER_REF": "docker.io/library/debian:bookworm-slim@sha256:9b67294679b30e5d6ab257b40594feeb4a4b81f7fcf4131f4decf0d6a212a9b0"
       }
     }
   ]
