@@ -11,7 +11,7 @@
       "platform": "linux/amd64",
       "dockerfile": "linux-amd64.Dockerfile",
       "build_args": {
-        "BASE_REF": "gcr.io/distroless/base-debian12:latest-amd64@sha256:6dda3ce74e0685a5de84634001c2fa6f3fd134b77c39c4cb1ad697dc1b5da1c4",
+        "BASE_REF": "gcr.io/distroless/base-debian12:latest-amd64@sha256:d2add786f2a5f43d1ab3ae54cd3193de929d0d12c378ff60891921f56f3e47ff",
         "BUILDER_REF": "docker.io/library/debian:bookworm-slim@sha256:362e64223cc0da95422b3b13c045186fc0a81250e765d31c025fbddf257f6143"
       }
     },
@@ -21,7 +21,7 @@
       "platform": "linux/arm64",
       "dockerfile": "linux-arm64.Dockerfile",
       "build_args": {
-        "BASE_REF": "gcr.io/distroless/base-debian12:latest-arm64@sha256:8021099fa372c2085661f0532d67596a4bd7e7b3c4eb18fdbcefe748eeca1292",
+        "BASE_REF": "gcr.io/distroless/base-debian12:latest-arm64@sha256:94d5278016c07e4e328da0a983823b92a2341df326d59de3408b8c6fd50bb4b3",
         "BUILDER_REF": "docker.io/library/debian:bookworm-slim@sha256:817e6cf99d6fc127ff4ffe8580049b60deba0adfbbb2bd65ddc3ef8fbb7aade0"
       }
     },
@@ -31,7 +31,7 @@
       "platform": "linux/amd64",
       "dockerfile": "linux-amd64.Dockerfile",
       "build_args": {
-        "BASE_REF": "gcr.io/distroless/base-debian12:debug-amd64@sha256:e751b596a860f3d5773a4307844f54281d5819c39766fb8e3c026d85fb84eded",
+        "BASE_REF": "gcr.io/distroless/base-debian12:debug-amd64@sha256:d474201b07a626348745b2233f3ca83ed2c6c884d317bd7caa6642a15897ed03",
         "BUILDER_REF": "docker.io/library/debian:bookworm-slim@sha256:362e64223cc0da95422b3b13c045186fc0a81250e765d31c025fbddf257f6143"
       }
     },
@@ -41,7 +41,7 @@
       "platform": "linux/arm64",
       "dockerfile": "linux-arm64.Dockerfile",
       "build_args": {
-        "BASE_REF": "gcr.io/distroless/base-debian12:debug-arm64@sha256:8a02b6b712fd811fa1702323af7e4d109f1f8ff35070b831b218b6addaf13f57",
+        "BASE_REF": "gcr.io/distroless/base-debian12:debug-arm64@sha256:33417680faeb6f56e1df2aaf3afd08d95501c77dad6059b341c0703726e4ef1c",
         "BUILDER_REF": "docker.io/library/debian:bookworm-slim@sha256:817e6cf99d6fc127ff4ffe8580049b60deba0adfbbb2bd65ddc3ef8fbb7aade0"
       }
     }
