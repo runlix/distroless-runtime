@@ -12,7 +12,7 @@
       "dockerfile": "linux-amd64.Dockerfile",
       "build_args": {
         "BASE_REF": "gcr.io/distroless/base-debian12:latest-amd64@sha256:d2add786f2a5f43d1ab3ae54cd3193de929d0d12c378ff60891921f56f3e47ff",
-        "BUILDER_REF": "docker.io/library/debian:bookworm-slim@sha256:5ae3c39ebd15e229dcedd5cee596b2497182493d41ff162e824ba13fc1b2b867"
+        "BUILDER_REF": "docker.io/library/debian:bookworm-slim@sha256:f3034a6ec3c1205360777c4aae76234998866ad18806ae62b63a3f84ccad782b"
       }
     },
     {
@@ -22,7 +22,7 @@
       "dockerfile": "linux-arm64.Dockerfile",
       "build_args": {
         "BASE_REF": "gcr.io/distroless/base-debian12:latest-arm64@sha256:94d5278016c07e4e328da0a983823b92a2341df326d59de3408b8c6fd50bb4b3",
-        "BUILDER_REF": "docker.io/library/debian:bookworm-slim@sha256:6bd27d44e6c32a66bbd72d7cb2b76a8ae3497ec2e5274a81abd1b37f6013fa1f"
+        "BUILDER_REF": "docker.io/library/debian:bookworm-slim@sha256:0c8bbb8e987a035fe1d9704eb2e571b7e9a836e1caa46345290674b45b69e417"
       }
     },
     {
@@ -32,7 +32,7 @@
       "dockerfile": "linux-amd64.Dockerfile",
       "build_args": {
         "BASE_REF": "gcr.io/distroless/base-debian12:debug-amd64@sha256:d474201b07a626348745b2233f3ca83ed2c6c884d317bd7caa6642a15897ed03",
-        "BUILDER_REF": "docker.io/library/debian:bookworm-slim@sha256:5ae3c39ebd15e229dcedd5cee596b2497182493d41ff162e824ba13fc1b2b867"
+        "BUILDER_REF": "docker.io/library/debian:bookworm-slim@sha256:f3034a6ec3c1205360777c4aae76234998866ad18806ae62b63a3f84ccad782b"
       }
     },
     {
@@ -42,7 +42,7 @@
       "dockerfile": "linux-arm64.Dockerfile",
       "build_args": {
         "BASE_REF": "gcr.io/distroless/base-debian12:debug-arm64@sha256:33417680faeb6f56e1df2aaf3afd08d95501c77dad6059b341c0703726e4ef1c",
-        "BUILDER_REF": "docker.io/library/debian:bookworm-slim@sha256:6bd27d44e6c32a66bbd72d7cb2b76a8ae3497ec2e5274a81abd1b37f6013fa1f"
+        "BUILDER_REF": "docker.io/library/debian:bookworm-slim@sha256:0c8bbb8e987a035fe1d9704eb2e571b7e9a836e1caa46345290674b45b69e417"
       }
     }
   ]
