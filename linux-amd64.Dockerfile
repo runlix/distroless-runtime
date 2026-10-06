@@ -1,4 +1,4 @@
-ARG BUILDER_REF="docker.io/library/debian:bookworm-slim@sha256:f3034a6ec3c1205360777c4aae76234998866ad18806ae62b63a3f84ccad782b"
+ARG BUILDER_REF="docker.io/library/debian:bookworm-slim@sha256:a4672c0cb26fbdde88e38fa2dfb6c681942306680e41e4378b28770b6e79ee91"
 ARG BASE_REF="gcr.io/distroless/base-debian12:latest-amd64@sha256:d2add786f2a5f43d1ab3ae54cd3193de929d0d12c378ff60891921f56f3e47ff"
 
 FROM ${BUILDER_REF} AS runtime-deps
